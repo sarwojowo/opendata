@@ -1,0 +1,3594 @@
+[
+    {
+        "id": "4456607fc6c83b3d",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "923c58bfa5810f9d",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8a220680e3553e62",
+        "type": "group",
+        "z": "923c58bfa5810f9d",
+        "name": "PERHITUNGAN OEE",
+        "style": {
+            "fill": "#a4a4a4",
+            "label": true,
+            "color": "#ffffff"
+        },
+        "nodes": [
+            "d7e1912da2c944da",
+            "3c1e854d499f03a5",
+            "9e6a846c19ec27f2",
+            "550e34c0fb121561",
+            "85247d39eaa11d03",
+            "84dd846bafd941e2",
+            "f882dcee5e9bff95",
+            "681c8c3e5ffe3e68",
+            "e360ff736ffc40e9"
+        ],
+        "x": 154,
+        "y": 99,
+        "w": 572,
+        "h": 322
+    },
+    {
+        "id": "5ae61b7801e94e87",
+        "type": "group",
+        "z": "923c58bfa5810f9d",
+        "name": "PENGAMBILAN DATA DARI PLC (AGV)",
+        "style": {
+            "fill": "#d1d1d1",
+            "label": true,
+            "color": "#ffffff"
+        },
+        "nodes": [
+            "ad390dde873c5265",
+            "194c7bc511ce109e",
+            "42f53e54680f04bb",
+            "c301944f0813b20c",
+            "76c30e3e7c25878c",
+            "8226144d86376fa6",
+            "11e710a9fc170c42",
+            "5893a3caed77a012",
+            "6dfefab16299a05e",
+            "e72c4bc4d73f99b4",
+            "5144fded34f027ed",
+            "d6bd48dd95cc3d14",
+            "0834dda3b1800494",
+            "cc863af2d4d5cf34",
+            "73abb73ae96dfb4c",
+            "56d1104511d7f1e7",
+            "70a26ff61fc42349"
+        ],
+        "x": 154,
+        "y": 539,
+        "w": 1332,
+        "h": 322
+    },
+    {
+        "id": "0b7bf4ebc9f169aa",
+        "type": "group",
+        "z": "923c58bfa5810f9d",
+        "name": "PENGAMBILAN DATA DARI PLC (AGV)",
+        "style": {
+            "fill": "#d1d1d1",
+            "label": true,
+            "color": "#ffffff"
+        },
+        "nodes": [
+            "9495206ebe9815b8",
+            "0be336303f64edd6",
+            "e4ea2d45b3ebd619",
+            "c5d40e4e72c36a44",
+            "5d07f0f9421cee22",
+            "5394ce87865ceec4",
+            "36e43b053dd08967",
+            "070335741d929471",
+            "a59d94f9add81fa2",
+            "97c96bc87eab531d",
+            "a5ebd58a78be9a4f",
+            "9275989f1b845026",
+            "919be8c9481d9f4e",
+            "b5249488d4fece1d",
+            "99c1da658e1c64b9",
+            "d1e37598d89b5208",
+            "4ab79e4e50d5c13a",
+            "bf5b975c81612c58",
+            "255a05e680a1025d",
+            "99bee6b13163caff",
+            "80b4074473c87ea4",
+            "4a0eef5f8c2a0ea0"
+        ],
+        "x": 154,
+        "y": 879,
+        "w": 1412,
+        "h": 402
+    },
+    {
+        "id": "9813a80cae31d646",
+        "type": "group",
+        "z": "923c58bfa5810f9d",
+        "name": "SEND DATA TO TABLE AND CSV",
+        "style": {
+            "fill": "#a4a4a4",
+            "label": true,
+            "color": "#ffffff"
+        },
+        "nodes": [
+            "c1e987e2995c07f5",
+            "553dabcfab1e4f0a",
+            "60beb73444d3c17d",
+            "dbb7985d2974a9a0",
+            "c9c981f5ea301aa1",
+            "b262f867346afaa6",
+            "d603c09f22f35ca1",
+            "254b8174e77ac708"
+        ],
+        "x": 234,
+        "y": 1319,
+        "w": 1172,
+        "h": 262
+    },
+    {
+        "id": "35095b42cc5d57a2",
+        "type": "FINS Connection",
+        "name": "CP2E-N",
+        "host": "192.168.250.1",
+        "port": "9600",
+        "MODE": "",
+        "MODEType": "CP",
+        "protocol": "",
+        "protocolType": "tcp",
+        "ICF": "0x80",
+        "DNA": "",
+        "DA1": "1",
+        "DA2": "",
+        "SNA": "",
+        "SA1": "179",
+        "SA2": "",
+        "autoConnect": true
+    },
+    {
+        "id": "075d807b19086893",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "7fd8f6c57b65d4df",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "37299c90b1c9ed75",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "localhost",
+        "port": "3306",
+        "db": "production_db",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "effd3fed0bb233c2",
+        "type": "ui_tab",
+        "name": "HMI",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": true,
+        "hidden": false
+    },
+    {
+        "id": "8322bb34a2f7543e",
+        "type": "ui_group",
+        "name": "CYCLE_TIME",
+        "tab": "effd3fed0bb233c2",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "562fbe0c8a2312c2",
+        "type": "ui_link",
+        "name": "Link 3",
+        "icon": "open_in_browser",
+        "target": "newtab",
+        "order": 4
+    },
+    {
+        "id": "6b27ad8840f3a054",
+        "type": "ui_group",
+        "name": "CYCLE_TIME",
+        "tab": "075d807b19086893",
+        "order": 2,
+        "disp": true,
+        "width": 8,
+        "collapse": false
+    },
+    {
+        "id": "5614f4d1d30a2a06",
+        "type": "ui_group",
+        "name": "PRODUCT_OK",
+        "tab": "075d807b19086893",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "52e4fbd9fe438f3a",
+        "type": "ui_group",
+        "name": "PRODUCT_NG",
+        "tab": "075d807b19086893",
+        "order": 3,
+        "disp": true,
+        "width": 6,
+        "collapse": false
+    },
+    {
+        "id": "0e5e829462e29bef",
+        "type": "ui_group",
+        "name": "ALARM",
+        "tab": "075d807b19086893",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "11b02c27768700d5",
+        "type": "ui_group",
+        "name": "MC_STATUS",
+        "tab": "075d807b19086893",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "c9ffca7d13d34f03",
+        "type": "MySQLdatabase",
+        "name": "example",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "example_line",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "a84b79c05b627f47",
+        "type": "MSSQL-CN",
+        "tdsVersion": "7_4",
+        "name": "DANTA",
+        "server": "EL-DESIGN",
+        "port": "",
+        "encyption": true,
+        "database": "danta",
+        "useUTC": true,
+        "connectTimeout": "15000",
+        "requestTimeout": "15000",
+        "cancelTimeout": "5000",
+        "pool": "5"
+    },
+    {
+        "id": "e0ea339aab7351d5",
+        "type": "MSSQL-CN",
+        "tdsVersion": "7_4",
+        "name": "Trial2",
+        "server": "192.168.250.99",
+        "port": "1433",
+        "encyption": true,
+        "database": "production_line",
+        "useUTC": true,
+        "connectTimeout": "15000",
+        "requestTimeout": "15000",
+        "cancelTimeout": "5000",
+        "pool": "5"
+    },
+    {
+        "id": "27cd5a11653705f0",
+        "type": "ui_tab",
+        "name": "Home2",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "8f19085e618cd9cb",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "27cd5a11653705f0",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "acf895f0c48c677b",
+        "type": "ui_tab",
+        "name": "danta",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "b70c6b5e6a1a1679",
+        "type": "ui_group",
+        "name": "danta",
+        "tab": "acf895f0c48c677b",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "4a23a77f7888e536",
+        "type": "ui_group",
+        "name": "NG",
+        "tab": "075d807b19086893",
+        "order": 6,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "8f7efbd2b1eb604d",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "731c4f1774947ff5",
+        "type": "ui_group",
+        "name": "Part Number",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false
+    },
+    {
+        "id": "257590374a01506d",
+        "type": "ui_group",
+        "name": "PART NUMBER",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": 13,
+        "collapse": false
+    },
+    {
+        "id": "b42feb88665d3769",
+        "type": "ui-base",
+        "name": "TEST",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": true
+    },
+    {
+        "id": "0f1d33b79e95b664",
+        "type": "ui-page",
+        "name": "DASHBOARD",
+        "ui": "b42feb88665d3769",
+        "path": "/page2",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "209c588cef7db018",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "179bf139f7a48a1f",
+        "type": "ui-page",
+        "name": "HISTORY",
+        "ui": "b42feb88665d3769",
+        "path": "/page3",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "209c588cef7db018",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 2,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "0c2cc3fb82c6bb62",
+        "type": "ui-group",
+        "name": "Group 1",
+        "page": "",
+        "width": 6,
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": true,
+        "disabled": false,
+        "groupType": "default"
+    },
+    {
+        "id": "9bd159390938481c",
+        "type": "ui-group",
+        "name": "OEE",
+        "page": "",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "e4392c6f6c4191f9",
+        "type": "ui-group",
+        "name": "PART NUMBER",
+        "page": "0f1d33b79e95b664",
+        "width": "6",
+        "height": "1",
+        "order": 6,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "792855e0cbf5ca74",
+        "type": "ui-group",
+        "name": "OEE",
+        "page": "0f1d33b79e95b664",
+        "width": "3",
+        "height": "1",
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "true",
+        "groupType": "default"
+    },
+    {
+        "id": "857f11287ec39f78",
+        "type": "ui-group",
+        "name": "AVAILABILITY",
+        "page": "0f1d33b79e95b664",
+        "width": "3",
+        "height": "1",
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "4e0b9d3599609b62",
+        "type": "ui-group",
+        "name": "PERFORMANCE",
+        "page": "0f1d33b79e95b664",
+        "width": "3",
+        "height": "1",
+        "order": 5,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "7d98491b988aad19",
+        "type": "ui-group",
+        "name": "QUANTITY",
+        "page": "0f1d33b79e95b664",
+        "width": "3",
+        "height": "1",
+        "order": 4,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "2683df0752c069a7",
+        "type": "ui-group",
+        "name": "History Table",
+        "page": "179bf139f7a48a1f",
+        "width": "12",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "f34fea2e2cfa87a5",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "df57d952259ee3dc",
+        "type": "ui-theme",
+        "name": "Theme Name",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "10px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "683aea9156ec2f7d",
+        "type": "ui-spacer",
+        "group": "",
+        "name": "spacer",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "className": ""
+    },
+    {
+        "id": "683af5f5210a791c",
+        "type": "ui-spacer",
+        "group": "",
+        "name": "spacer",
+        "order": 1,
+        "width": 3,
+        "height": 1,
+        "className": ""
+    },
+    {
+        "id": "06ef387d890621e1",
+        "type": "ui_tab",
+        "name": "Tab 1",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "ccd51ee85d711eb7",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "06ef387d890621e1",
+        "order": 1,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "477c797ec82c31c5",
+        "type": "ui_group",
+        "name": "Group 2",
+        "tab": "06ef387d890621e1",
+        "order": 2,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "209c588cef7db018",
+        "type": "ui-theme",
+        "name": "DARK",
+        "colors": {
+            "surface": "#262626",
+            "primary": "#0094ce",
+            "bgPage": "#262626",
+            "groupBg": "#333333",
+            "groupOutline": "#333333"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "6066ddeb7fbc6412",
+        "type": "ui-theme",
+        "name": "Theme 3",
+        "colors": {
+            "surface": "#262626",
+            "primary": "#0094ce",
+            "bgPage": "#262626",
+            "groupBg": "#333333",
+            "groupOutline": "#333333"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "938345407e86e6a1",
+        "type": "ui-group",
+        "name": "HEADER",
+        "page": "0f1d33b79e95b664",
+        "width": "13",
+        "height": 1,
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "7faf82de2aa241e7",
+        "type": "ui-group",
+        "name": "TOTAL QUANTITY (BOX)",
+        "page": "0f1d33b79e95b664",
+        "width": "6",
+        "height": 1,
+        "order": 9,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "427f66ce8f267394",
+        "type": "ui-group",
+        "name": "SHUTDOWN TIME",
+        "page": "0f1d33b79e95b664",
+        "width": "6",
+        "height": "1",
+        "order": 8,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "46d5941fee08eae4",
+        "type": "ui-group",
+        "name": "CYCLE TIME",
+        "page": "0f1d33b79e95b664",
+        "width": "6",
+        "height": "1",
+        "order": 7,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "81930c600de2e379",
+        "type": "ui-group",
+        "name": "ALARM NOTICE",
+        "page": "0f1d33b79e95b664",
+        "width": 6,
+        "height": 1,
+        "order": 10,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "6a3a7496bf2dcedd",
+        "type": "ui-group",
+        "name": "MACHINE_COND",
+        "page": "0f1d33b79e95b664",
+        "width": 6,
+        "height": 1,
+        "order": 11,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "48ed1193f2afe4f4",
+        "type": "ui-group",
+        "name": "SHUTDOWN TIME (SECOND)",
+        "page": "",
+        "width": "6",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "aa85f290a04d4e20",
+        "type": "ui-group",
+        "name": "DANDORY TIME (SECOND)",
+        "page": "",
+        "width": "6",
+        "height": "1",
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "dc7dfc038b990d04",
+        "type": "ui-group",
+        "name": "RUNNING TIME",
+        "page": "",
+        "width": "6",
+        "height": "1",
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "76a071251c8386a2",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Availability",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Ubah buffer jadi string dan hapus spasi ekstra\n\n// Pisahkan data berdasarkan spasi\nlet values = data.split(' ');\n\n// Ambil nilai pertama dan ubah ke float, lalu geser desimal satu angka ke kiri\nlet result = values[0];\nlet intResult = parseFloat(result);\n\n// Simpan ke msg.payload\nmsg.payload = intResult;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 420,
+        "wires": [
+            [
+                "3b49b003578af1e1"
+            ]
+        ]
+    },
+    {
+        "id": "3b49b003578af1e1",
+        "type": "ui-gauge",
+        "z": "4456607fc6c83b3d",
+        "name": "Availability",
+        "group": "857f11287ec39f78",
+        "order": 1,
+        "width": "3",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "45",
+                "color": "#ffc800"
+            },
+            {
+                "from": "80",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1770,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "7b21d170a09b0393",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Performance",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Ubah buffer jadi string dan hapus spasi ekstra\n\n// Pisahkan data berdasarkan spasi\nlet values = data.split(' ');\n\n// Ambil nilai pertama dan ubah ke float, lalu geser desimal satu angka ke kiri\nlet result = values[0];\nlet intResult = parseFloat(result);\n\n// Simpan ke msg.payload\nmsg.payload = intResult;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 260,
+        "wires": [
+            [
+                "44e8cae6f024b410"
+            ]
+        ]
+    },
+    {
+        "id": "44e8cae6f024b410",
+        "type": "ui-gauge",
+        "z": "4456607fc6c83b3d",
+        "name": "Performance",
+        "group": "4e0b9d3599609b62",
+        "order": 1,
+        "width": "3",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "45",
+                "color": "#ffc800"
+            },
+            {
+                "from": "80",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1770,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "9645abe9a8a37915",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Quality",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Ubah buffer jadi string dan hapus spasi ekstra\n\n// Pisahkan data berdasarkan spasi\nlet values = data.split(' ');\n\n// Ambil nilai pertama dan ubah ke float, lalu geser desimal satu angka ke kiri\nlet result = values[0];\nlet intResult = parseFloat(result);\n\n// Simpan ke msg.payload\nmsg.payload = intResult;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1540,
+        "y": 340,
+        "wires": [
+            [
+                "a7cb63c96a1a4f8e"
+            ]
+        ]
+    },
+    {
+        "id": "a7cb63c96a1a4f8e",
+        "type": "ui-gauge",
+        "z": "4456607fc6c83b3d",
+        "name": "Quality",
+        "group": "7d98491b988aad19",
+        "order": 1,
+        "width": "3",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "45",
+                "color": "#ffc800"
+            },
+            {
+                "from": "80",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1760,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "fc9c2840bc336cdc",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Oee",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Ubah buffer jadi string dan hapus spasi ekstra\n\n// Pisahkan data berdasarkan spasi\nlet values = data.split(' ');\n\n// Ambil nilai pertama dan ubah ke float, lalu geser desimal satu angka ke kiri\nlet result = values[0];\nlet intResult = parseFloat(result);\n\n// Simpan ke msg.payload\nmsg.payload = intResult;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1530,
+        "y": 500,
+        "wires": [
+            [
+                "721e352c1396b1af"
+            ]
+        ]
+    },
+    {
+        "id": "721e352c1396b1af",
+        "type": "ui-gauge",
+        "z": "4456607fc6c83b3d",
+        "name": "Oee",
+        "group": "792855e0cbf5ca74",
+        "order": 1,
+        "width": "3",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "45",
+                "color": "#ffc800"
+            },
+            {
+                "from": "80",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1770,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "e28d72e3a4551dd6",
+        "type": "ui-text",
+        "z": "4456607fc6c83b3d",
+        "group": "e4392c6f6c4191f9",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "PART NUMBER",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "40",
+        "color": "#fcfe9f",
+        "wrapText": false,
+        "className": "",
+        "x": 1760,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "4daf6af166fc2e52",
+        "type": "ui-text",
+        "z": "4456607fc6c83b3d",
+        "group": "938345407e86e6a1",
+        "order": 2,
+        "width": "12",
+        "height": "1",
+        "name": "HEADER",
+        "label": "AUTO FINISH GOOD",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": true,
+        "font": "Lucida Sans Unicode,Lucida Grande,sans-serif",
+        "fontSize": "25",
+        "color": "#47a3ac",
+        "wrapText": false,
+        "className": "",
+        "x": 1340,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "861a2093eaf55996",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "TOTAL QUANTITY",
+        "func": "msg.payload = \"RDS EM030102 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 660,
+        "wires": [
+            [
+                "30b51397a68696b4"
+            ]
+        ]
+    },
+    {
+        "id": "9960dc80b7fb526f",
+        "type": "ui-text",
+        "z": "4456607fc6c83b3d",
+        "group": "7faf82de2aa241e7",
+        "order": 2,
+        "width": "6",
+        "height": "1",
+        "name": "TOTAL QUANTITY",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "40",
+        "color": "#9ffeee",
+        "wrapText": false,
+        "className": "",
+        "x": 1790,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "9fdf2359bbe2cb25",
+        "type": "ui-text",
+        "z": "4456607fc6c83b3d",
+        "group": "427f66ce8f267394",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "SHUTDOWN TIME",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "40",
+        "color": "#fe9f9f",
+        "wrapText": false,
+        "className": "",
+        "x": 1790,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "a9838cb17a13ab33",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "SHUTDOWN TIME",
+        "func": "msg.payload = \"RDS EM30100 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 740,
+        "wires": [
+            [
+                "f7e2a45c4353fa4a"
+            ]
+        ]
+    },
+    {
+        "id": "2eb7c68b51ed294f",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "CYCLE TIME",
+        "func": "msg.payload = \"RDS EM030104 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 820,
+        "wires": [
+            [
+                "38886f973dfd6b51"
+            ]
+        ]
+    },
+    {
+        "id": "f0d922499d4ae3fd",
+        "type": "ui-text",
+        "z": "4456607fc6c83b3d",
+        "group": "46d5941fee08eae4",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "CYCLE TIME",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "40",
+        "color": "#fcefc9",
+        "wrapText": false,
+        "className": "",
+        "x": 1780,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "901b5970f9f4b4c7",
+        "type": "ui-text",
+        "z": "4456607fc6c83b3d",
+        "group": "81930c600de2e379",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "ALARM NOTICE",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": true,
+        "font": "Lucida Sans Unicode,Lucida Grande,sans-serif",
+        "fontSize": "35",
+        "color": "#f44848",
+        "wrapText": false,
+        "className": "",
+        "x": 1790,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "04c9ed6b32426115",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "ALARM INFORMATION",
+        "func": "msg.payload = \"RDS EM030106 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 920,
+        "wires": [
+            [
+                "99777a3abfb7be54"
+            ]
+        ]
+    },
+    {
+        "id": "add4656f202cafe0",
+        "type": "ui-text",
+        "z": "4456607fc6c83b3d",
+        "group": "6a3a7496bf2dcedd",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "MACHINE_COND",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": true,
+        "font": "",
+        "fontSize": "45",
+        "color": "#ffffff",
+        "wrapText": false,
+        "className": "",
+        "x": 1790,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "87f2bd722179accc",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Machine_Cond",
+        "func": "msg.payload = \"RDS EM030108 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 1000,
+        "wires": [
+            [
+                "2fd395aa4316a095"
+            ]
+        ]
+    },
+    {
+        "id": "4be2d827f6f5b575",
+        "type": "inject",
+        "z": "4456607fc6c83b3d",
+        "name": "START",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 320,
+        "y": 420,
+        "wires": [
+            [
+                "1d9d4c08adb29302",
+                "d0dd54f78ad947d9",
+                "66318ad20cab1b41",
+                "b2f3a61682f8234d"
+            ]
+        ]
+    },
+    {
+        "id": "43ea23a1edd9dd9c",
+        "type": "inject",
+        "z": "4456607fc6c83b3d",
+        "name": "START",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 340,
+        "y": 820,
+        "wires": [
+            [
+                "861a2093eaf55996",
+                "a9838cb17a13ab33",
+                "2eb7c68b51ed294f",
+                "04c9ed6b32426115",
+                "87f2bd722179accc",
+                "7ec5abaf283f3c91"
+            ]
+        ]
+    },
+    {
+        "id": "109b3dcc80363bec",
+        "type": "inject",
+        "z": "4456607fc6c83b3d",
+        "name": "HEADER",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PT XYZ INDONESIA",
+        "payloadType": "str",
+        "x": 470,
+        "y": 1080,
+        "wires": [
+            [
+                "4c3e74bcb056727b"
+            ]
+        ]
+    },
+    {
+        "id": "7ec5abaf283f3c91",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Read Part Number (PLC)",
+        "func": "msg.payload = \"RDS EM030000 8\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 580,
+        "wires": [
+            [
+                "ddc6e834d2bbf53b"
+            ]
+        ]
+    },
+    {
+        "id": "ddc6e834d2bbf53b",
+        "type": "tcp request",
+        "z": "4456607fc6c83b3d",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 990,
+        "y": 580,
+        "wires": [
+            [
+                "5bde357ac04f90e9"
+            ]
+        ]
+    },
+    {
+        "id": "30b51397a68696b4",
+        "type": "tcp request",
+        "z": "4456607fc6c83b3d",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 990,
+        "y": 660,
+        "wires": [
+            [
+                "112bfaf0335ae5e3"
+            ]
+        ]
+    },
+    {
+        "id": "f7e2a45c4353fa4a",
+        "type": "tcp request",
+        "z": "4456607fc6c83b3d",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 990,
+        "y": 740,
+        "wires": [
+            [
+                "a3c79cd59b1007fe"
+            ]
+        ]
+    },
+    {
+        "id": "38886f973dfd6b51",
+        "type": "tcp request",
+        "z": "4456607fc6c83b3d",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 990,
+        "y": 820,
+        "wires": [
+            [
+                "b8e704dd876b5687"
+            ]
+        ]
+    },
+    {
+        "id": "99777a3abfb7be54",
+        "type": "tcp request",
+        "z": "4456607fc6c83b3d",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 990,
+        "y": 920,
+        "wires": [
+            [
+                "23a3c5af084dbc86"
+            ]
+        ]
+    },
+    {
+        "id": "2fd395aa4316a095",
+        "type": "tcp request",
+        "z": "4456607fc6c83b3d",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 990,
+        "y": 1000,
+        "wires": [
+            [
+                "61fce3a59aeeb440"
+            ]
+        ]
+    },
+    {
+        "id": "5bde357ac04f90e9",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Encode Data Part Number",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Ambil data dan hilangkan spasi tambahan\n\n// Pisahkan semua angka berdasarkan spasi\nlet values = data.split(' ');\n\n// Proses semua angka satu per satu\nlet result = values.map(strNumber => {\n    let decimalNumber = parseInt(strNumber, 10);\n    let hexString = decimalNumber.toString(16).toUpperCase();\n\n    // Tambahkan 0 depan kalau hex ganjil\n    if (hexString.length % 2 !== 0) {\n        hexString = '0' + hexString;\n    }\n\n    let hexPairs = hexString.match(/.{1,2}/g);\n    let chars = hexPairs.map(hex => String.fromCharCode(parseInt(hex, 16)));\n\n    return chars.join('');\n});\n\n// Gabungkan semua hasil jadi satu string\nmsg.payload = result.join('');\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 580,
+        "wires": [
+            [
+                "e28d72e3a4551dd6"
+            ]
+        ]
+    },
+    {
+        "id": "112bfaf0335ae5e3",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Encode Data Total Quantity",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Mengubah buffer menjadi string dan menghapus spasi tambahan\n// Pisahkan data berdasarkan spasi (Keyence biasanya mengirimkan data terpisah)\nlet values = data.split(' ');\n// Gabungkan hasil menjadi satu string\n// let result = values.map(value => {\n//     // Untuk setiap nilai, konversi ke karakter menggunakan 16-bit\n//     let intValue = parseInt(value, 10);\n//     return `${String.fromCharCode((intValue >> 8) & 0xFF)}${String.fromCharCode(intValue & 0xFF)}`;\n// }).join('');\n\nlet result = values[0]\nlet intResult = parseInt(result);\nmsg.payload = intResult;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 660,
+        "wires": [
+            [
+                "9960dc80b7fb526f"
+            ]
+        ]
+    },
+    {
+        "id": "a3c79cd59b1007fe",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Encode Data Shutdown Time",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Ubah buffer jadi string dan hapus spasi ekstra\n\n// Pisahkan data berdasarkan spasi\nlet values = data.split(' ');\n\n// Ambil nilai pertama dan ubah ke float, lalu geser desimal satu angka ke kiri\nlet result = values[0];\nlet intResult = parseFloat(result) / 100;\n\n// Simpan ke msg.payload\nmsg.payload = intResult;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 740,
+        "wires": [
+            [
+                "9fdf2359bbe2cb25"
+            ]
+        ]
+    },
+    {
+        "id": "b8e704dd876b5687",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Encode Data Cycle Time",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Ubah buffer jadi string dan hapus spasi ekstra\n\n// Pisahkan data berdasarkan spasi\nlet values = data.split(' ');\n\n// Ambil nilai pertama dan ubah ke float, lalu geser desimal satu angka ke kiri\nlet result = values[0];\nlet intResult = parseFloat(result) / 100;\n\n// Simpan ke msg.payload\nmsg.payload = intResult;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1230,
+        "y": 820,
+        "wires": [
+            [
+                "f0d922499d4ae3fd"
+            ]
+        ]
+    },
+    {
+        "id": "23a3c5af084dbc86",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Encode Data Alarm",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Mengubah buffer menjadi string dan menghapus spasi tambahan\n// Pisahkan data berdasarkan spasi (Keyence biasanya mengirimkan data terpisah)\nlet values = data.split(' ');\n// Gabungkan hasil menjadi satu string\n// let result = values.map(value => {\n//     // Untuk setiap nilai, konversi ke karakter menggunakan 16-bit\n//     let intValue = parseInt(value, 10);\n//     return `${String.fromCharCode((intValue >> 8) & 0xFF)}${String.fromCharCode(intValue & 0xFF)}`;\n// }).join('');\n\nlet result = values[0]\nlet intResult = parseInt(result);\nmsg.payload = intResult;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1210,
+        "y": 920,
+        "wires": [
+            [
+                "ed49925825785340"
+            ]
+        ]
+    },
+    {
+        "id": "ed49925825785340",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "ALARM INFORMATION",
+        "func": "let num = msg.payload;\nlet alarm = \"\"\n\nswitch (num) {\n    case 0:\n        alarm = \"\"\n    break;\n    case 1:\n        alarm = \"AL01_EMERGENCY_STOP\"\n    break;\n    case 2:\n        alarm = \"AL02_FUSE_BLOWN\"\n    break;\n    case 3:\n        alarm = \"AL03_AGV_MOTOR_ABNORMAL\"\n    break;\n        default:\n}\nmsg.payload = alarm\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1490,
+        "y": 920,
+        "wires": [
+            [
+                "901b5970f9f4b4c7"
+            ]
+        ]
+    },
+    {
+        "id": "66d7bcf6b922cc3c",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Machine_Cond",
+        "func": "let num = msg.payload;\nlet notice = \"\"\n\nswitch (num) {\n    case 1:\n        notice = \"RUNNING\"\n    break;\n    case 2:\n        notice = \"ALARM\"\n    break;\n    case 3 :\n        notice = \"STANDBY\"\n    break;\n        default:\n}\nmsg.payload = notice\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1500,
+        "y": 1000,
+        "wires": [
+            [
+                "add4656f202cafe0"
+            ]
+        ]
+    },
+    {
+        "id": "61fce3a59aeeb440",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Encode Data Machine Cond",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Mengubah buffer menjadi string dan menghapus spasi tambahan\n// Pisahkan data berdasarkan spasi (Keyence biasanya mengirimkan data terpisah)\nlet values = data.split(' ');\n// Gabungkan hasil menjadi satu string\n// let result = values.map(value => {\n//     // Untuk setiap nilai, konversi ke karakter menggunakan 16-bit\n//     let intValue = parseInt(value, 10);\n//     return `${String.fromCharCode((intValue >> 8) & 0xFF)}${String.fromCharCode(intValue & 0xFF)}`;\n// }).join('');\n\nlet result = values[0]\nlet intResult = parseInt(result);\nmsg.payload = intResult;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 1000,
+        "wires": [
+            [
+                "66d7bcf6b922cc3c"
+            ]
+        ]
+    },
+    {
+        "id": "b39d4d99eec60c12",
+        "type": "tcp request",
+        "z": "4456607fc6c83b3d",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 1110,
+        "y": 260,
+        "wires": [
+            [
+                "7b21d170a09b0393"
+            ]
+        ]
+    },
+    {
+        "id": "1d9d4c08adb29302",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Read Performance (PLC)",
+        "func": "msg.payload = \"RDS EM030110 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 260,
+        "wires": [
+            [
+                "b39d4d99eec60c12"
+            ]
+        ]
+    },
+    {
+        "id": "8b4d24ad7ba0dfa9",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "function 1",
+        "func": "\nvar now = new Date();\nvar date = now.toLocaleDateString();  // Hanya tanggal\nvar time = now.toLocaleTimeString();  // Hanya waktu\nvar alarm = msg.payload;\nmsg.payload = {\n    \"Date\" : date,\n    \"Time\" : time,\n    \"Alarm\" : alarm\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1140,
+        "wires": [
+            [
+                "1bddd7178c9ddfac"
+            ]
+        ]
+    },
+    {
+        "id": "2290c32da8d90799",
+        "type": "file",
+        "z": "4456607fc6c83b3d",
+        "name": "",
+        "filename": "D:\\File\\test.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 1040,
+        "y": 1140,
+        "wires": [
+            [
+                "f1102ddbab8b4984"
+            ]
+        ]
+    },
+    {
+        "id": "f1102ddbab8b4984",
+        "type": "debug",
+        "z": "4456607fc6c83b3d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1240,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "f0b9a585a0377ead",
+        "type": "inject",
+        "z": "4456607fc6c83b3d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Dantal",
+        "payloadType": "str",
+        "x": 450,
+        "y": 1140,
+        "wires": [
+            [
+                "8b4d24ad7ba0dfa9"
+            ]
+        ]
+    },
+    {
+        "id": "4c3e74bcb056727b",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "function 2",
+        "func": "\nvar t = new Date().toLocaleString();\nvar alarm = \"AL01_EMERGENCY_STOP_BUTTON\";\nmsg.payload = t;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 1080,
+        "wires": [
+            [
+                "4daf6af166fc2e52"
+            ]
+        ]
+    },
+    {
+        "id": "1bddd7178c9ddfac",
+        "type": "csv",
+        "z": "4456607fc6c83b3d",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "once",
+        "multi": "one",
+        "ret": "\\r\\n",
+        "temp": "Date,Time,Alarm",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 870,
+        "y": 1140,
+        "wires": [
+            [
+                "2290c32da8d90799"
+            ]
+        ]
+    },
+    {
+        "id": "d0dd54f78ad947d9",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Read Quality (PLC)",
+        "func": "msg.payload = \"RDS EM030112 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 340,
+        "wires": [
+            [
+                "a73030516066e3cd"
+            ]
+        ]
+    },
+    {
+        "id": "a73030516066e3cd",
+        "type": "tcp request",
+        "z": "4456607fc6c83b3d",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 1110,
+        "y": 340,
+        "wires": [
+            [
+                "9645abe9a8a37915"
+            ]
+        ]
+    },
+    {
+        "id": "66318ad20cab1b41",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Read Availability (PLC)",
+        "func": "msg.payload = \"RDS EM030114 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 420,
+        "wires": [
+            [
+                "72deec88e86cfd6c"
+            ]
+        ]
+    },
+    {
+        "id": "72deec88e86cfd6c",
+        "type": "tcp request",
+        "z": "4456607fc6c83b3d",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 1110,
+        "y": 420,
+        "wires": [
+            [
+                "76a071251c8386a2"
+            ]
+        ]
+    },
+    {
+        "id": "b2f3a61682f8234d",
+        "type": "function",
+        "z": "4456607fc6c83b3d",
+        "name": "Read OEE (PLC)",
+        "func": "msg.payload = \"RDS EM030116 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 500,
+        "wires": [
+            [
+                "0b1b6878ecffcf73"
+            ]
+        ]
+    },
+    {
+        "id": "0b1b6878ecffcf73",
+        "type": "tcp request",
+        "z": "4456607fc6c83b3d",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 1110,
+        "y": 500,
+        "wires": [
+            [
+                "fc9c2840bc336cdc"
+            ]
+        ]
+    },
+    {
+        "id": "d7e1912da2c944da",
+        "type": "inject",
+        "z": "923c58bfa5810f9d",
+        "g": "8a220680e3553e62",
+        "name": "",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 250,
+        "y": 300,
+        "wires": [
+            [
+                "3c1e854d499f03a5",
+                "9e6a846c19ec27f2",
+                "550e34c0fb121561",
+                "85247d39eaa11d03"
+            ]
+        ]
+    },
+    {
+        "id": "3c1e854d499f03a5",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "8a220680e3553e62",
+        "name": "Quality_OEE",
+        "func": "var getDataTotalQty = flow.get(\"Total_Qty\"); // Total produk (baik + NG)\nvar getDataGoodQty = flow.get(\"Good_Qty\");   // Produk OK\nvar outputNonStandard = getDataTotalQty - getDataGoodQty; // Produk NG (optional)\n\nvar oeeQuality = 0;\n\n// Cek agar tidak membagi dengan nol\nif (getDataTotalQty > 0) {\n    oeeQuality = getDataGoodQty / getDataTotalQty;\n}\n\nvar value = oeeQuality * 100;\nvalue = parseFloat(value.toFixed(1)); // 1 angka desimal\n\n// Simpan ke flow context\nflow.set(\"Quality\", value);\nflow.set(\"Reject_Qty\", outputNonStandard); // Bisa disimpan juga jika perlu\n\n// Kirim hasil\nmsg.payload = value;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 140,
+        "wires": [
+            [
+                "f882dcee5e9bff95"
+            ]
+        ]
+    },
+    {
+        "id": "9e6a846c19ec27f2",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "8a220680e3553e62",
+        "name": "Performance_OEE",
+        "func": "var getDataCycletime = 60 // Ideal cycle time dalam detik\nvar hour = 28800 // 8 jam dalam detik\nvar getDataShudownTime = flow.get(\"Shutdown_Time\")\nvar totalCount = flow.get(\"Total_Qty\") // jumlah produk (OK + NG)\n\nvar operatingTime = hour - getDataShudownTime\n\nvar performance = (getDataCycletime * totalCount) / operatingTime\nperformance = parseFloat(performance.toFixed(2))\n\nflow.set(\"Performance\", performance)\nflow.set(\"Operating_Time\", operatingTime)\nflow.set(\"Hour\", hour)\n\nmsg.payload = performance\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 220,
+        "wires": [
+            [
+                "84dd846bafd941e2"
+            ]
+        ]
+    },
+    {
+        "id": "550e34c0fb121561",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "8a220680e3553e62",
+        "name": "Availability_OEE",
+        "func": "// Ambil data dari flow\nvar totalShiftTime = flow.get(\"Hour\");              // Total waktu kerja (contoh: 28800 detik)\nvar dandoryTime = flow.get(\"Dandory_Time\");         // Waktu setup/ubah model\nvar shutdownTime = flow.get(\"Shutdown_Time\");       // Waktu shutdown (planned/unplanned)\nvar standbyTime = flow.get(\"Standby_Time\");         // Waktu standby mesin\nvar operatingTime = flow.get(\"Operating_Time\");     // Waktu mesin benar-benar produksi\n\n// Hitung Loading Time: waktu yang seharusnya digunakan untuk produksi\n// (Total waktu kerja dikurangi downtime terencana seperti dandory, standby, shutdown)\nvar loadingTime = totalShiftTime - (dandoryTime + standbyTime + shutdownTime);\n\n// Hindari pembagian nol\nif (loadingTime <= 0) {\n    node.error(\"Loading time tidak valid (<= 0), cek input data.\");\n    msg.payload = 0;\n    return msg;\n}\n\n// Hitung Availability\nvar availability = operatingTime / loadingTime;\navailability = parseFloat(availability.toFixed(2)); // dibulatkan 2 angka desimal\n\n// Simpan hasil ke flow context\nflow.set(\"Availability\", availability);\nflow.set(\"Loading_Time\", loadingTime);\n\n// Kirim hasil sebagai output\nmsg.payload = availability;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 300,
+        "wires": [
+            [
+                "681c8c3e5ffe3e68"
+            ]
+        ]
+    },
+    {
+        "id": "85247d39eaa11d03",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "8a220680e3553e62",
+        "name": "OEE",
+        "func": "var getQuality = flow.get(\"Quality\");\nvar getPerformance = flow.get(\"Performance\");\nvar getAvailability = flow.get(\"Availability\");\n\ngetQuality = getQuality / 100;\ngetPerformance = getPerformance / 100;\ngetAvailability = getAvailability / 100;\n\n\nvar oee = getAvailability * getPerformance * getQuality;\n\nvar value = parseFloat((oee*100).toFixed(3));\nflow.set(\"OEE\",value);\nmsg.payload = value;\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 380,
+        "wires": [
+            [
+                "e360ff736ffc40e9"
+            ]
+        ]
+    },
+    {
+        "id": "84dd846bafd941e2",
+        "type": "ui-gauge",
+        "z": "923c58bfa5810f9d",
+        "g": "8a220680e3553e62",
+        "name": "Performance",
+        "group": "4e0b9d3599609b62",
+        "order": 2,
+        "width": "3",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "45",
+                "color": "#ffc800"
+            },
+            {
+                "from": "80",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 630,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f882dcee5e9bff95",
+        "type": "ui-gauge",
+        "z": "923c58bfa5810f9d",
+        "g": "8a220680e3553e62",
+        "name": "Quality",
+        "group": "7d98491b988aad19",
+        "order": 2,
+        "width": "3",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "45",
+                "color": "#ffc800"
+            },
+            {
+                "from": "80",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 620,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "681c8c3e5ffe3e68",
+        "type": "ui-gauge",
+        "z": "923c58bfa5810f9d",
+        "g": "8a220680e3553e62",
+        "name": "Availability",
+        "group": "857f11287ec39f78",
+        "order": 2,
+        "width": "3",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "45",
+                "color": "#ffc800"
+            },
+            {
+                "from": "80",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 630,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "e360ff736ffc40e9",
+        "type": "ui-gauge",
+        "z": "923c58bfa5810f9d",
+        "g": "8a220680e3553e62",
+        "name": "Oee",
+        "group": "792855e0cbf5ca74",
+        "order": 2,
+        "width": "3",
+        "height": "4",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353"
+            },
+            {
+                "from": "45",
+                "color": "#ffc800"
+            },
+            {
+                "from": "80",
+                "color": "#5cd65c"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 610,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "ad390dde873c5265",
+        "type": "inject",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 250,
+        "y": 740,
+        "wires": [
+            [
+                "76c30e3e7c25878c",
+                "8226144d86376fa6",
+                "11e710a9fc170c42",
+                "e72c4bc4d73f99b4"
+            ]
+        ]
+    },
+    {
+        "id": "194c7bc511ce109e",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "Shutdown_Time",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Mengubah buffer menjadi string dan menghapus spasi tambahan\n// Pisahkan data berdasarkan spasi (Keyence biasanya mengirimkan data terpisah)\nlet values = data.split(' ');\n// Gabungkan hasil menjadi satu string\n// let result = values.map(value => {\n//     // Untuk setiap nilai, konversi ke karakter menggunakan 16-bit\n//     let intValue = parseInt(value, 10);\n//     return `${String.fromCharCode((intValue >> 8) & 0xFF)}${String.fromCharCode(intValue & 0xFF)}`;\n// }).join('');\n\nlet result = values[0]\nlet intResult = parseInt(result);\nmsg.payload = intResult;\nflow.set(\"Shutdown_Time\", intResult)\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 660,
+        "wires": [
+            [
+                "6dfefab16299a05e"
+            ]
+        ]
+    },
+    {
+        "id": "42f53e54680f04bb",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "Dandory_Time",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Mengubah buffer menjadi string dan menghapus spasi tambahan\n// Pisahkan data berdasarkan spasi (Keyence biasanya mengirimkan data terpisah)\nlet values = data.split(' ');\n// Gabungkan hasil menjadi satu string\n// let result = values.map(value => {\n//     // Untuk setiap nilai, konversi ke karakter menggunakan 16-bit\n//     let intValue = parseInt(value, 10);\n//     return `${String.fromCharCode((intValue >> 8) & 0xFF)}${String.fromCharCode(intValue & 0xFF)}`;\n// }).join('');\n\nlet result = values[0]\nlet intResult = parseInt(result);\nmsg.payload = intResult;\nflow.set(\"Dandory_Time\", intResult)\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c301944f0813b20c",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "Standby Time",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Mengubah buffer menjadi string dan menghapus spasi tambahan\n// Pisahkan data berdasarkan spasi (Keyence biasanya mengirimkan data terpisah)\nlet values = data.split(' ');\n// Gabungkan hasil menjadi satu string\n// let result = values.map(value => {\n//     // Untuk setiap nilai, konversi ke karakter menggunakan 16-bit\n//     let intValue = parseInt(value, 10);\n//     return `${String.fromCharCode((intValue >> 8) & 0xFF)}${String.fromCharCode(intValue & 0xFF)}`;\n// }).join('');\n\nlet result = values[0]\nlet intResult = parseInt(result);\nmsg.payload = intResult;\nflow.set(\"Standby_Time\", intResult)\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9495206ebe9815b8",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "Encode Total Qty",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Mengubah buffer menjadi string dan menghapus spasi tambahan\n// Pisahkan data berdasarkan spasi (Keyence biasanya mengirimkan data terpisah)\nlet values = data.split(' ');\n// Gabungkan hasil menjadi satu string\n// let result = values.map(value => {\n//     // Untuk setiap nilai, konversi ke karakter menggunakan 16-bit\n//     let intValue = parseInt(value, 10);\n//     return `${String.fromCharCode((intValue >> 8) & 0xFF)}${String.fromCharCode(intValue & 0xFF)}`;\n// }).join('');\n\nlet result = values[0]\nlet intResult = parseInt(result);\nmsg.payload = intResult;\nflow.set(\"Total_Qty\", intResult)\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 920,
+        "wires": [
+            [
+                "97c96bc87eab531d"
+            ]
+        ]
+    },
+    {
+        "id": "0be336303f64edd6",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "Encode Good Qty",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Mengubah buffer menjadi string dan menghapus spasi tambahan\n// Pisahkan data berdasarkan spasi (Keyence biasanya mengirimkan data terpisah)\nlet values = data.split(' ');\n// Gabungkan hasil menjadi satu string\n// let result = values.map(value => {\n//     // Untuk setiap nilai, konversi ke karakter menggunakan 16-bit\n//     let intValue = parseInt(value, 10);\n//     return `${String.fromCharCode((intValue >> 8) & 0xFF)}${String.fromCharCode(intValue & 0xFF)}`;\n// }).join('');\n\nlet result = values[0]\nlet intResult = parseInt(result);\nmsg.payload = intResult;\nflow.set(\"Good_Qty\", intResult)\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e4ea2d45b3ebd619",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "Encode Partnumber",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Ambil data dan hilangkan spasi tambahan\n\n// Pisahkan semua angka berdasarkan spasi\nlet values = data.split(' ');\n\n// Proses semua angka satu per satu\nlet result = values.map(strNumber => {\n    let decimalNumber = parseInt(strNumber, 10);\n    let hexString = decimalNumber.toString(16).toUpperCase();\n\n    // Tambahkan 0 depan kalau hex ganjil\n    if (hexString.length % 2 !== 0) {\n        hexString = '0' + hexString;\n    }\n\n    let hexPairs = hexString.match(/.{1,2}/g);\n    let chars = hexPairs.map(hex => String.fromCharCode(parseInt(hex, 16)));\n\n    return chars.join('');\n});\n\n// Gabungkan semua hasil jadi satu string\nmsg.payload = result.join('');\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 1080,
+        "wires": [
+            [
+                "a5ebd58a78be9a4f"
+            ]
+        ]
+    },
+    {
+        "id": "c5d40e4e72c36a44",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "Encode Alarm Info",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Mengubah buffer menjadi string dan menghapus spasi tambahan\n// Pisahkan data berdasarkan spasi (Keyence biasanya mengirimkan data terpisah)\nlet values = data.split(' ');\n// Gabungkan hasil menjadi satu string\n// let result = values.map(value => {\n//     // Untuk setiap nilai, konversi ke karakter menggunakan 16-bit\n//     let intValue = parseInt(value, 10);\n//     return `${String.fromCharCode((intValue >> 8) & 0xFF)}${String.fromCharCode(intValue & 0xFF)}`;\n// }).join('');\n\nlet result = values[0]\nlet intResult = parseInt(result);\nflow.set(\"Alarm\",intResult)\nmsg.payload = intResult;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 1160,
+        "wires": [
+            [
+                "4ab79e4e50d5c13a"
+            ]
+        ]
+    },
+    {
+        "id": "5d07f0f9421cee22",
+        "type": "inject",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 250,
+        "y": 1080,
+        "wires": [
+            [
+                "36e43b053dd08967",
+                "070335741d929471",
+                "5394ce87865ceec4",
+                "a59d94f9add81fa2",
+                "919be8c9481d9f4e"
+            ]
+        ]
+    },
+    {
+        "id": "5394ce87865ceec4",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "Read Part Number (PLC)",
+        "func": "msg.payload = \"RDS EM030000 8\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 1080,
+        "wires": [
+            [
+                "99bee6b13163caff"
+            ]
+        ]
+    },
+    {
+        "id": "36e43b053dd08967",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "Read Total Qty (PLC)",
+        "func": "msg.payload = \"RDS EM030102 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 920,
+        "wires": [
+            [
+                "bf5b975c81612c58"
+            ]
+        ]
+    },
+    {
+        "id": "070335741d929471",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "Read Good Qty (PLC)",
+        "func": "msg.payload = \"RDS EM030118 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 1000,
+        "wires": [
+            [
+                "255a05e680a1025d"
+            ]
+        ]
+    },
+    {
+        "id": "a59d94f9add81fa2",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "Read Alarm Info (PLC)",
+        "func": "msg.payload = \"RDS EM030106 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 1160,
+        "wires": [
+            [
+                "80b4074473c87ea4"
+            ]
+        ]
+    },
+    {
+        "id": "76c30e3e7c25878c",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "Read Standby Time (PLC)",
+        "func": "msg.payload = \"RDS EM030120 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 580,
+        "wires": [
+            [
+                "cc863af2d4d5cf34"
+            ]
+        ]
+    },
+    {
+        "id": "8226144d86376fa6",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "Read ShutdownTime (PLC)",
+        "func": "msg.payload = \"RDS EM030100 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 660,
+        "wires": [
+            [
+                "73abb73ae96dfb4c"
+            ]
+        ]
+    },
+    {
+        "id": "11e710a9fc170c42",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "Read DandoryTime (PLC)",
+        "func": "msg.payload = \"RDS EM030122 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 740,
+        "wires": [
+            [
+                "56d1104511d7f1e7"
+            ]
+        ]
+    },
+    {
+        "id": "97c96bc87eab531d",
+        "type": "ui-text",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "group": "7faf82de2aa241e7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Total Qty",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "40",
+        "color": "#9ffeee",
+        "wrapText": false,
+        "className": "",
+        "x": 1460,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "a5ebd58a78be9a4f",
+        "type": "ui-text",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "group": "e4392c6f6c4191f9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Part Number",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "40",
+        "color": "#fcfe9e",
+        "wrapText": false,
+        "className": "",
+        "x": 1450,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "9275989f1b845026",
+        "type": "ui-text",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "group": "81930c600de2e379",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Alarm Info",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "35",
+        "color": "#f53232",
+        "wrapText": false,
+        "className": "",
+        "x": 1450,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "919be8c9481d9f4e",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "Read MachineInfo (PLC)",
+        "func": "msg.payload = \"RDS EM030108 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 1240,
+        "wires": [
+            [
+                "4a0eef5f8c2a0ea0"
+            ]
+        ]
+    },
+    {
+        "id": "b5249488d4fece1d",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "Encode Machine Info",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Mengubah buffer menjadi string dan menghapus spasi tambahan\n// Pisahkan data berdasarkan spasi (Keyence biasanya mengirimkan data terpisah)\nlet values = data.split(' ');\n// Gabungkan hasil menjadi satu string\n// let result = values.map(value => {\n//     // Untuk setiap nilai, konversi ke karakter menggunakan 16-bit\n//     let intValue = parseInt(value, 10);\n//     return `${String.fromCharCode((intValue >> 8) & 0xFF)}${String.fromCharCode(intValue & 0xFF)}`;\n// }).join('');\n\nlet result = values[0]\nlet intResult = parseInt(result);\nmsg.payload = intResult;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 1240,
+        "wires": [
+            [
+                "d1e37598d89b5208"
+            ]
+        ]
+    },
+    {
+        "id": "99c1da658e1c64b9",
+        "type": "ui-text",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "group": "6a3a7496bf2dcedd",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Machine Info",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "35",
+        "color": "#ffffff",
+        "wrapText": false,
+        "className": "",
+        "x": 1470,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "5893a3caed77a012",
+        "type": "ui-text",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "group": "427f66ce8f267394",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Shutdown Time",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "35",
+        "color": "#f53232",
+        "wrapText": false,
+        "className": "",
+        "x": 1380,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "6dfefab16299a05e",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "Format Time",
+        "func": "let totalSeconds = parseInt(msg.payload);\nlet hours = Math.floor(totalSeconds / 3600);\nlet minutes = Math.floor((totalSeconds % 3600) / 60);\nlet seconds = totalSeconds % 60;\n\nfunction pad(n) {\n    return n.toString().padStart(2, '0');\n}\n\nmsg.payload = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 660,
+        "wires": [
+            [
+                "5893a3caed77a012"
+            ]
+        ]
+    },
+    {
+        "id": "e72c4bc4d73f99b4",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "Read Cycle Time (PLC)",
+        "func": "msg.payload = \"RDS EM030104 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 820,
+        "wires": [
+            [
+                "70a26ff61fc42349"
+            ]
+        ]
+    },
+    {
+        "id": "5144fded34f027ed",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "Cycle Time",
+        "func": "// Ambil data buffer dari msg.payload\nlet data = msg.payload.toString('utf-8').trim(); // Mengubah buffer menjadi string dan menghapus spasi tambahan\n// Pisahkan data berdasarkan spasi (Keyence biasanya mengirimkan data terpisah)\nlet values = data.split(' ');\n// Gabungkan hasil menjadi satu string\n// let result = values.map(value => {\n//     // Untuk setiap nilai, konversi ke karakter menggunakan 16-bit\n//     let intValue = parseInt(value, 10);\n//     return `${String.fromCharCode((intValue >> 8) & 0xFF)}${String.fromCharCode(intValue & 0xFF)}`;\n// }).join('');\n\nlet result = values[0]\nlet intResult = parseInt(result);\nmsg.payload = intResult;\nflow.set(\"Cycle_Time\", intResult)\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 820,
+        "wires": [
+            [
+                "0834dda3b1800494"
+            ]
+        ]
+    },
+    {
+        "id": "d6bd48dd95cc3d14",
+        "type": "ui-text",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "group": "46d5941fee08eae4",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Cycle Time",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "35",
+        "color": "#ebd200",
+        "wrapText": false,
+        "className": "",
+        "x": 1370,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "d1e37598d89b5208",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "Machine Info",
+        "func": "let num = msg.payload;\nlet notice = \"\"\n\nswitch (num) {\n    case 0:\n        notice = \"NORMAL\"\n        break;\n    case 1:\n        notice = \"RUNNING\"\n    break;\n    case 2:\n        notice = \"ALARM\"\n    break;\n    case 3 :\n        notice = \"STANDBY\"\n    break;\n        default:\n}\nmsg.payload = notice\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1250,
+        "y": 1240,
+        "wires": [
+            [
+                "99c1da658e1c64b9"
+            ]
+        ]
+    },
+    {
+        "id": "4ab79e4e50d5c13a",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "Alarm Info",
+        "func": "let num = msg.payload;\nlet alarm = \"\"\nswitch (num) {\n    case 0:\n        alarm = \"\"\n    break;\n    case 1:\n        alarm = \"AL65_AGV_EMG_STOP\"\n    break;\n    case 2:\n        alarm = \"AL67_AGV_FUSE_BLOWN\"\n    break;\n    case 3:\n        alarm = \"AL68_AGV_MOTOR_DRIVE_ABNORMAL\"\n    break;\n    case 4:\n        alarm = \"AAL69_LS_FRONT_BUMPER_ON\"\n    break;\n    case 5:\n        alarm = \"AL70_LS_REAR_BUMPER_ON\"\n    break;\n    case 6:\n        alarm = \"AL71_AGV_EC1_ALARM\"\n    break;\n    case 7:\n        alarm = \"AL72_AGV_EC2_ALARM\"\n    break;\n    case 8:\n        alarm = \"AL73_AGV_EC3_ALARM\"\n    break;\n        default:\n}\nmsg.payload = alarm\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1250,
+        "y": 1160,
+        "wires": [
+            [
+                "9275989f1b845026"
+            ]
+        ]
+    },
+    {
+        "id": "0834dda3b1800494",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "Format Time",
+        "func": "let totalSeconds = parseInt(msg.payload);\nlet hours = Math.floor(totalSeconds / 3600);\nlet minutes = Math.floor((totalSeconds % 3600) / 60);\nlet seconds = totalSeconds % 60;\n\nfunction pad(n) {\n    return n.toString().padStart(2, '0');\n}\n\nmsg.payload = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 820,
+        "wires": [
+            [
+                "d6bd48dd95cc3d14"
+            ]
+        ]
+    },
+    {
+        "id": "cc863af2d4d5cf34",
+        "type": "tcp request",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 810,
+        "y": 580,
+        "wires": [
+            [
+                "c301944f0813b20c"
+            ]
+        ]
+    },
+    {
+        "id": "73abb73ae96dfb4c",
+        "type": "tcp request",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 810,
+        "y": 660,
+        "wires": [
+            [
+                "194c7bc511ce109e"
+            ]
+        ]
+    },
+    {
+        "id": "56d1104511d7f1e7",
+        "type": "tcp request",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 810,
+        "y": 740,
+        "wires": [
+            [
+                "42f53e54680f04bb"
+            ]
+        ]
+    },
+    {
+        "id": "70a26ff61fc42349",
+        "type": "tcp request",
+        "z": "923c58bfa5810f9d",
+        "g": "5ae61b7801e94e87",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 810,
+        "y": 820,
+        "wires": [
+            [
+                "5144fded34f027ed"
+            ]
+        ]
+    },
+    {
+        "id": "bf5b975c81612c58",
+        "type": "tcp request",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 710,
+        "y": 920,
+        "wires": [
+            [
+                "9495206ebe9815b8"
+            ]
+        ]
+    },
+    {
+        "id": "255a05e680a1025d",
+        "type": "tcp request",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 710,
+        "y": 1000,
+        "wires": [
+            [
+                "0be336303f64edd6"
+            ]
+        ]
+    },
+    {
+        "id": "99bee6b13163caff",
+        "type": "tcp request",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 710,
+        "y": 1080,
+        "wires": [
+            [
+                "e4ea2d45b3ebd619"
+            ]
+        ]
+    },
+    {
+        "id": "80b4074473c87ea4",
+        "type": "tcp request",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 710,
+        "y": 1160,
+        "wires": [
+            [
+                "c5d40e4e72c36a44"
+            ]
+        ]
+    },
+    {
+        "id": "4a0eef5f8c2a0ea0",
+        "type": "tcp request",
+        "z": "923c58bfa5810f9d",
+        "g": "0b7bf4ebc9f169aa",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 710,
+        "y": 1240,
+        "wires": [
+            [
+                "b5249488d4fece1d"
+            ]
+        ]
+    },
+    {
+        "id": "c1e987e2995c07f5",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "9813a80cae31d646",
+        "name": "Read send (PLC)",
+        "func": "msg.payload = \"RDS EM030124 1\\r\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 1420,
+        "wires": [
+            [
+                "553dabcfab1e4f0a"
+            ]
+        ]
+    },
+    {
+        "id": "553dabcfab1e4f0a",
+        "type": "tcp request",
+        "z": "923c58bfa5810f9d",
+        "g": "9813a80cae31d646",
+        "name": "AGV_PLC",
+        "server": "192.168.250.10",
+        "port": "8501",
+        "out": "time",
+        "ret": "buffer",
+        "splitc": "10",
+        "newline": "",
+        "trim": false,
+        "tls": "",
+        "x": 530,
+        "y": 1460,
+        "wires": [
+            [
+                "dbb7985d2974a9a0"
+            ]
+        ]
+    },
+    {
+        "id": "60beb73444d3c17d",
+        "type": "inject",
+        "z": "923c58bfa5810f9d",
+        "g": "9813a80cae31d646",
+        "name": "",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 330,
+        "y": 1360,
+        "wires": [
+            [
+                "c1e987e2995c07f5"
+            ]
+        ]
+    },
+    {
+        "id": "dbb7985d2974a9a0",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "9813a80cae31d646",
+        "name": "Encode Machine Info",
+        "func": "let data = msg.payload.toString('utf-8').trim();\nlet values = data.split(' ');\nlet result = values[0]\nlet intResult = parseInt(result);\nflow.set(\"hstr\", intResult);\nmsg.payload = intResult;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 1500,
+        "wires": [
+            [
+                "c9c981f5ea301aa1"
+            ]
+        ]
+    },
+    {
+        "id": "c9c981f5ea301aa1",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "g": "9813a80cae31d646",
+        "name": "SEND DATA TO TABLE",
+        "func": "// Ambil sinyal masuk\nvar alarm = flow.get(\"Alarm\")\nvar signal = flow.get(\"hstr\") ;\nvar sent = flow.get(\"x\") || false;\nvar date = flow.get(\"Date\")\nvar time = flow.get(\"Time\")\nvar notice  = \"\"\nif (signal === 1) {\n    if (!sent) {\n        switch (alarm) {\n            case 0:\n                notice = \"\"\n            break;\n            case 1:\n                notice = \"AL65_AGV_EMG_STOP\"\n            break;\n            case 2:\n                notice = \"AL67_AGV_FUSE_BLOWN\"\n            break;\n            case 3:\n                notice = \"AL68_AGV_MOTOR_DRIVE_ABNORMAL\"\n            break;\n            case 4:\n                notice = \"AAL69_LS_FRONT_BUMPER_ON\"\n            break;\n            case 5:\n                notice = \"AL70_LS_REAR_BUMPER_ON\"\n            break;\n            case 6:\n                notice = \"AL71_AGV_EC1_ALARM\"\n            break;\n            case 7:\n                notice = \"AL72_AGV_EC2_ALARM\"\n            break;\n            case 8:\n                notice = \"AL73_AGV_EC3_ALARM\"\n            break;\n            default:\n        }\n        flow.set(\"x\", true);\n        msg.payload = {\n            Date : date,\n            Time : time,\n            Alarm : notice\n        };\n        return msg;\n    } else {\n        // Sudah dikirim sebelumnya, abaikan\n        return null;\n    }\n} else if (signal === 0) {\n    // Reset memory\n    flow.set(\"x\", false);\n    return null;\n} else {\n    // Sinyal tidak dikenali\n    return null;\n}\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 1500,
+        "wires": [
+            [
+                "b262f867346afaa6",
+                "d603c09f22f35ca1"
+            ]
+        ]
+    },
+    {
+        "id": "17fc7dd57f7433f1",
+        "type": "inject",
+        "z": "923c58bfa5810f9d",
+        "name": "",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 850,
+        "y": 120,
+        "wires": [
+            [
+                "0d94fbc4e059b4ba"
+            ]
+        ]
+    },
+    {
+        "id": "4152603cceb06b77",
+        "type": "inject",
+        "z": "923c58bfa5810f9d",
+        "name": "",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 850,
+        "y": 200,
+        "wires": [
+            [
+                "828e7614a80fb1cd",
+                "1f8a072dc5a7a274"
+            ]
+        ]
+    },
+    {
+        "id": "828e7614a80fb1cd",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "name": "DATE",
+        "func": "var now = new Date();\nvar date = now.toLocaleDateString();  // contoh: 06/05/2025\nvar time = now.toLocaleTimeString();  // contoh: 13:45:32\nflow.set(\"Date\",date)\nmsg.payload = date;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 200,
+        "wires": [
+            [
+                "e99527f91cc18855"
+            ]
+        ]
+    },
+    {
+        "id": "1f8a072dc5a7a274",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "name": "TIME",
+        "func": "var now = new Date();\nvar date = now.toLocaleDateString();  // contoh: 06/05/2025\nvar time = now.toLocaleTimeString();  // contoh: 13:45:32\nflow.set(\"Time\",time)\n\nmsg.payload = time;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 260,
+        "wires": [
+            [
+                "7923a89d1dcd18e4"
+            ]
+        ]
+    },
+    {
+        "id": "e99527f91cc18855",
+        "type": "ui-text",
+        "z": "923c58bfa5810f9d",
+        "group": "938345407e86e6a1",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "name": "DATE",
+        "label": "DATE : ",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "25",
+        "color": "#0cdae9",
+        "wrapText": false,
+        "className": "",
+        "x": 1230,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "7923a89d1dcd18e4",
+        "type": "ui-text",
+        "z": "923c58bfa5810f9d",
+        "group": "938345407e86e6a1",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "name": "TIME",
+        "label": "TIME : ",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "25",
+        "color": "#0cdae9",
+        "wrapText": false,
+        "className": "",
+        "x": 1230,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "0d94fbc4e059b4ba",
+        "type": "ui-text",
+        "z": "923c58bfa5810f9d",
+        "group": "938345407e86e6a1",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "name": "NAME",
+        "label": "AUTO FINISH GOOD",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": true,
+        "font": "Verdana,Verdana,Geneva,sans-serif",
+        "fontSize": "40",
+        "color": "#0cdae9",
+        "wrapText": false,
+        "className": "",
+        "x": 1230,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "b262f867346afaa6",
+        "type": "ui-table",
+        "z": "923c58bfa5810f9d",
+        "g": "9813a80cae31d646",
+        "group": "2683df0752c069a7",
+        "name": "",
+        "label": "",
+        "order": 1,
+        "width": "12",
+        "height": "10",
+        "maxrows": 0,
+        "passthru": false,
+        "autocols": true,
+        "showSearch": true,
+        "deselect": true,
+        "selectionType": "none",
+        "columns": [
+            {
+                "title": "",
+                "key": "",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "start"
+            }
+        ],
+        "mobileBreakpoint": "sm",
+        "mobileBreakpointType": "defaults",
+        "action": "append",
+        "x": 1090,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d603c09f22f35ca1",
+        "type": "csv",
+        "z": "923c58bfa5810f9d",
+        "g": "9813a80cae31d646",
+        "name": "",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "once",
+        "multi": "one",
+        "ret": "\\r\\n",
+        "temp": "Date,Time,Alarm",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1090,
+        "y": 1540,
+        "wires": [
+            [
+                "254b8174e77ac708"
+            ]
+        ]
+    },
+    {
+        "id": "254b8174e77ac708",
+        "type": "file",
+        "z": "923c58bfa5810f9d",
+        "g": "9813a80cae31d646",
+        "name": "",
+        "filename": "D:\\Alarm_AFG\\alarm.csv",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "utf8",
+        "x": 1270,
+        "y": 1540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b4b573997fd1fc17",
+        "type": "inject",
+        "z": "923c58bfa5810f9d",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 830,
+        "y": 400,
+        "wires": [
+            [
+                "c993b02a2b646e15"
+            ]
+        ]
+    },
+    {
+        "id": "c993b02a2b646e15",
+        "type": "function",
+        "z": "923c58bfa5810f9d",
+        "name": "DATA FORM PLC",
+        "func": "var getQuality = flow.get(\"Quality\");\nvar getPerformance = flow.get(\"Performance\");\nvar getAvailibility = flow.get(\"Availability\");\nvar getOperating = flow.get(\"Operating_Time\");\nvar getLoadingTime = flow.get(\"Loading_Time\")\ngetQuality = getQuality / 100;\ngetPerformance = getPerformance / 100;\ngetAvailibility = getAvailibility / 100;\n\n\nvar oee = getAvailibility * getPerformance * getQuality;\n\nvar value = parseFloat((oee*100).toFixed(13));\nflow.set(\"OEE\", value);\nmsg.payload = [getLoadingTime,getOperating,getAvailibility,getPerformance,getQuality,oee];\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 400,
+        "wires": [
+            [
+                "5c0acfb37bacae3b"
+            ]
+        ]
+    },
+    {
+        "id": "5c0acfb37bacae3b",
+        "type": "debug",
+        "z": "923c58bfa5810f9d",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1320,
+        "y": 400,
+        "wires": []
+    }
+]
