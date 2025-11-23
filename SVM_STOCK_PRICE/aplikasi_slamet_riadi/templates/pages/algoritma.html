@@ -1,0 +1,168 @@
+{% if session.get('user') %}
+    {% extends 'layouts/app2.html' %}
+{% else %}
+{% extends 'layouts/app.html' %}
+{% endif %}
+
+{% block content %}
+<div class="card card-default">
+    <form method="GET" id="prediction-form">
+        <div class="card-body">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Pilih Perusahaan</label>
+                    <select class="form-control" name="namaData" required="">
+                        {% for item in list_data %}
+                            <option value="{{ item['nama_data'] }}" {% if item['nama_data'] == nama_data %} selected {% endif %} >{{ item['nama_data'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" id="predict-button" type="submit">Prediksi</button>
+        </div>
+    </form>
+</div>
+{% if show_data == 1 %}
+<center><h5>Prediksi Harga Saham {{ nama_data }} Menggunakan Support Vector Regression dan Linear Regression</h5></center>
+<div class="card card-default">
+    <div class="card-body">
+        <center><h5><b>Data Training</b></h5></center>
+        <p>
+            Data training digunakan untuk melatih model. <br>
+            80% untuk data training dan 20% untuk data testing.
+        </p><hr>
+        <table class="table table-bordered data-table">
+            <thead>
+                <tr>
+                    <th style="width: 1px;">No</th>
+                    <th>High</th>
+                    <th>Low</th>
+                    <th>Open</th>
+                    <th>Volume</th>
+                    <th>Close</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in df_train.iterrows() %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ '%.1f' % row['high'] }}</td>
+                        <td>{{ '%.1f' % row['low'] }}</td>
+                        <td>{{ '%.1f' % row['open'] }}</td>
+                        <td>{{ '%.1f' % row['volume'] }}</td>
+                        <td>{{ '%.1f' % row['close'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+<div class="card card-default">
+    <div class="card-body">
+        <center><h5><b>Hasil Prediksi Data Testing</b></h5></center>
+        <p>
+            - Data testing digunakan untuk menguji kemampuan model dalam memprediksi atau mengklasifikasikan data yang tidak digunakan selama pelatihan. <br>
+            - Kolom Close merupakan harga asli saham dari yahoo finance. <br>
+            - Kolom SVR - Kernel RBF adalah hasil prediksi menggunakan SVR dengan Kernel RBF. <br>
+            - Kolom SVR - Kernel Linear adalah hasil prediksi menggunakan SVR dengan Kernel Linear. <br>
+            - Kolom SVR - Kernel Polynomial adalah hasil prediksi menggunakan SVR dengan Kernel Polynomial. <br>
+            - Kolom SVR - Kernel Sigmoid adalah hasil prediksi menggunakan SVR dengan Kernel Sigmoid. <br>
+            - Kolom Linear Regression adalah hasil prediksi menggunakan Linear Regression. <br>
+        </p><hr>
+        <table class="table table-bordered data-table">
+            <thead>
+                <th style="width: 1px;">No</th>
+                <th>Date</th>
+                <th>Close</th>
+                <th>SVR - Kernel RBF</th>
+                <th>SVR - Kernel Linear</th>
+                <th>SVR - Kernel Polynomial</th>
+                <th>SVR - Kernel Sigmoid</th>
+                <th>Linear Regression</th>
+            </thead>
+            <tbody>
+                {% for index, row in df_test.iterrows() %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ row['date'] }}</td>
+                        <td>{{ '%.1f' % row['close'] }}</td>
+                        <td>{{ '%.1f' % row['Pred_SVR_RBF'] }}</td>
+                        <td>{{ '%.1f' % row['Pred_SVR_Linear'] }}</td>
+                        <td>{{ '%.1f' % row['Pred_SVR_Poly'] }}</td>
+                        <td>{{ '%.1f' % row['Pred_SVR_Sigmoid'] }}</td>
+                        <td>{{ '%.1f' % row['Pred_LinearRegression'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card card-default">
+    <div class="card-body">
+        <center><h5><b>Perbandingan Evaluasi</b></h5></center>
+        <p>
+            Nilai RMSE (Root Mean Squared Error) dan MAPE (Mean Absolute Percentage Error) yang rendah menunjukkan bahwa model memiliki performa prediksi yang baik. 
+            Semakin kecil nilai RMSE semakin rendah rata-rata kesalahan kuadrat yang dilakukan model terhadap nilai aktual. 
+            Demikian pula semakin kecil nilai MAPE semakin kecil rata-rata kesalahan prediksi dalam bentuk persentase. 
+            Oleh karena itu, semakin mendekati nol nilai RMSE dan MAPE semakin akurat model dalam melakukan prediksi.
+        </p><hr>
+        <table class="table table-bordered data-table">
+            <thead>
+                <th style="width: 1px;">No</th>
+                <th>Algoritma</th>
+                <th>MAPE</th>
+                <th>RMSE</th>
+            </thead>
+            <tbody>
+                {% for index, row in df_evaluasi.iterrows() %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ row['algoritma'] }}</td>
+                        <td>{{ '%.2f' % row['mape'] }} %</td>
+                        <td>{{ '%.2f' % row['rmse'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card card-default">
+    <div class="card-body">
+        <center><h5><b>Hasil prediksi 1 hari kedepan</b></h5></center>
+        <table class="table table-bordered data-table">
+            <thead>
+                <th style="width: 1px;">No</th>
+                <th>Date</th>
+                <th>SVR - Kernel RBF</th>
+                <th>SVR - Kernel Linear</th>
+                <th>SVR - Kernel Polynomial</th>
+                <th>SVR - Kernel Sigmoid</th>
+                <th>Linear Regression</th>
+            </thead>
+            <tbody>
+                {% for index, row in df_next.iterrows() %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ row['date'] }}</td>
+                        <td>{{ '%.1f' % row['Pred_SVR_RBF'] }}</td>
+                        <td>{{ '%.1f' % row['Pred_SVR_Linear'] }}</td>
+                        <td>{{ '%.1f' % row['Pred_SVR_Poly'] }}</td>
+                        <td>{{ '%.1f' % row['Pred_SVR_Sigmoid'] }}</td>
+                        <td>{{ '%.1f' % row['Pred_LinearRegression'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock  %}
+
+{% block script %}
+
+{% endblock %}
+
+

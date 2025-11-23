@@ -1,0 +1,18 @@
+{% if session.get('user') %}
+    {% extends 'layouts/app2.html' %}
+{% else %}
+{% extends 'layouts/app.html' %}
+{% endif %}
+
+{% block content %}
+<div class="card card-default">
+    <div class="card-body">
+        <center><h3><b>Selamat Datang di Aplikasi {{ APP_NAME }}</b></h3></center>
+        <img style="width: 80%; height: 50%; display: block; margin: auto;" src="static/adminlte/dist/img/dashboard.jpg">
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
