@@ -1,0 +1,47 @@
+{% if not 'mac-vrf' in  system_tags %}
+{% set all_vlans = function.get_resource(resources,'vlans')%}
+{%- if all_vlans|length -%}
+{%-     for get_vlans in all_vlans['groups'] -%}
+{%      set ns = namespace() %}
+{%      set ns.name = "" %}
+{%          for vlan_name in get_vlans['label'] %}
+{%          set ns.name = ns.name + vlan_name %}
+{%          endfor %}
+{%    if loop.first %}
+
+vlans {
+{%      endif %}
+{% set ALL_vlan_info = function.get_resource(resources,ns.name,  'vlans') %}
+{%   for resource  in ALL_vlan_info.resources %}
+{%      if resource.get('value') and resource.get('label') == 'vni' %}
+{%          set vni_id = (resource['value']|int) %}
+    bd-{{vni_id}} {
+    description {{ns.name}};
+{%          for resource  in ALL_vlan_info.resources %}
+{%              if resource.get('value') and resource.get('label') == ns.name %}
+{%                  set vlan_id = (resource['value']|int) %}
+{%                  set assign = resource['assigned_to'] %}
+{%                      if assign %}
+    vlan-id {{vlan_id}};
+{%                      else %}
+    vlan-id none;
+{%                      endif %}
+{%               endif %}
+{%          endfor %}
+    vxlan {
+        vni {{vni_id}};
+        }
+{%          set get_ipv4s = function.get_resource_value(resources, 'ipv4_address', 'vlans', ns.name) %}
+{%          set get_ipv6s = function.get_resource_value(resources, 'ipv6_address', 'vlans', ns.name) %}
+{%          if ALL_vlan_info.data.l3 == 'enable' and get_ipv4s or get_ipv6s %}
+    l3-interface irb.{{vni_id}};
+{%          endif %}
+{%      endif %}
+{%   endfor %}
+    }
+{%          if loop.last %}
+}
+{%          endif %}
+{%-     endfor -%} 
+{% endif %}
+{% endif %}

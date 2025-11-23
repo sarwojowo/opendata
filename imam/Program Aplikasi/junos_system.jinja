@@ -1,0 +1,97 @@
+system {
+{%      if hostname %}
+    host-name {{hostname}};
+{%      endif %}
+{% set sys_prop = property_sets.get('custom_sys_properties', {} ) %}
+{%  if property_sets.custom_sys_properties is defined %}
+{# the location is based on whether this is site 1 or site 2. Using the variables in this way you apply site specific values without having to use conditional checks. #}
+    time-zone {{ sys_prop.time_zone }};
+    services {
+        netconf {
+            ssh;
+        }
+        ssh{
+            ciphers [ aes128-cbc aes128-ctr aes192-cbc aes192-ctr aes256-cbc aes256-ctr ];
+            key-exchange [ ecdh-sha2-nistp256 ecdh-sha2-nistp384 ecdh-sha2-nistp521 group-exchange-sha2 ];
+        }
+    }
+    login {
+        message "{{ sys_prop.login_message }}";
+    }
+    syslog  {
+        user * {
+            any emergency;
+        }
+        file messages {
+            any notice;
+        }
+        file cli-commands {
+            interactive-commands any;
+            explicit-priority;
+        }
+        time-format millisecond;
+    }
+{%      if 'ntp' in sys_prop and sys_prop.ntp.enabled %}
+    ntp {
+{%      for server in sys_prop.ntp.servers %}
+        server {{ server }};
+{%      endfor %}
+        source-address {{ management_ip }} routing-instance mgmt_junos;
+    }
+{%  endif %}
+    authentication-order [ tacplus password ];
+    tacplus-server {
+{%      for tacac_server in sys_prop.tacplus.servers %}
+        {{tacac_server.host_ip}} {
+            routing-instance mgmt_junos;
+            secret {{tacac_server.secret}}
+            source-address {{management_ip}};
+        }
+{%      endfor %}
+    }                                       
+    accounting {
+        events [ login change-log interactive-commands ];
+        destination {
+            tacplus {
+                server {
+{%              for tacac_server in sys_prop.tacplus.servers %}
+                    {{tacac_server.host_ip}} {
+                        routing-instance mgmt_junos;
+                        secret {{tacac_server.secret}} 
+                        source-address {{management_ip}};
+                    }
+{%              endfor %}
+                }
+            }
+        }
+    }
+    login {
+        class RO {
+            idle-timeout 10;
+            permissions [ view view-configuration ];
+            allow-commands "traceroute|ping|show|descriptions";
+        }
+        user R0 {
+            uid 222;
+            class RO;
+        }
+        user read-only {
+            uid 200;
+            class read-only;
+        }
+        user super-user {
+            uid 101;
+            class super-user;
+        }
+    }
+}
+snmp {
+    location "{{ sys_prop.snmp_location }}";
+    contact "{{ sys_prop.snmp_contact }}";
+{%  for snmp_community in sys_prop.snmp_commnunity %}
+    community {{ snmp_community }} {
+        authorization read-only;
+    }
+{%  endfor %}
+{% endif %}
+}

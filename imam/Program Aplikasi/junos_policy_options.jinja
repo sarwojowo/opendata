@@ -1,0 +1,312 @@
+{% set loopback_ipv4 = function.get_resource_value(resources, 'ipv4_loopback', 'underlay') %}
+{% set underlay_asn = function.get_resource_value(resources, 'underlay_asn', 'underlay') %}
+{% set overlay_asn = function.get_resource_value(resources, 'overlay_asn', 'overlay') %}
+{% set sys_prop = property_sets.get('custom_sys_properties', {} ) %}
+{% set ns = namespace( ) %}
+{% set ns.mgt4_allowed = [ ] %}
+{% set ns.snmp_allowed = [ ] %}
+{% set ns.ntp_allowed = [ ] %}
+{% set ns.bgp_peer4 = [ ] %}
+{% if 'protect_re' in sys_prop and sys_prop.protect_re.enabled %}
+    {# Create allowed prefix lists for v4 and v6 #}
+    {% if 'mgt_allowed_v4' in sys_prop.protect_re %}
+        {% for prefix in sys_prop.protect_re.mgt_allowed_v4 %}
+            {{ ns.mgt4_allowed.append(prefix) or '' }}
+        {%- endfor %}
+    {% endif %}
+    {% if 'snmp_allowed_v4' in sys_prop.protect_re %}
+        {% for prefix in sys_prop.protect_re.snmp_allowed_v4 %}
+            {{ ns.snmp_allowed.append(prefix) or '' }}
+        {%- endfor %}
+    {% endif %}
+    {% if 'ntp_allowed_v4' in sys_prop.protect_re %}
+        {% for prefix in sys_prop.protect_re.ntp_allowed_v4 %}
+            {{ ns.ntp_allowed.append(prefix) or '' }}
+        {%- endfor %}
+    {% endif %}
+{% endif %}
+
+policy-options {
+{% if 'spine' in system_tags or 'leaf' in system_tags or 'bleaf' in system_tags or 'access' in system_tags %}
+    policy-statement PFE-LB {
+       then {
+        load-balance per-packet;
+        }
+    }
+    policy-statement evpn_export_policy {
+        term inet-vpn {
+            from family inet-vpn;
+        then {
+            next-hop self;
+            }
+        }
+        term inet6-vpn {
+            from family inet6-vpn;
+        then {
+            next-hop self;
+            }
+        }
+    }
+    policy-statement UNDERLAY-EXPORT {      
+        term 10 {
+            from {
+                protocol direct;
+                route-filter 0.0.0.0/0 prefix-length-range /32-/32;
+            }
+        then accept;
+        }
+    }
+{% set all_vrf = function.get_resource(resources,'vrfs','overlay')%}
+{%- if all_vrf|length %}
+{%-     for get_vrfs in all_vrf['groups'] %}
+{%          if 'enable' in get_vrfs.data.vrf_leaking %}
+    policy-statement RCV_FROM_F5_IPV4_PREF_{{get_vrfs.data.local_pref}}_{{all_vrf.data.SITE}} {
+        term 1 {
+            from {
+                route-filter 0.0.0.0/0 exact;
+            }
+            then {
+                local-preference {{get_vrfs.data.local_pref}};
+                accept;
+            }
+        }                                   
+    }
+    policy-statement RCV_FROM_F5_IPV6_PREF_{{get_vrfs.data.local_pref}}_{{all_vrf.data.SITE}} {
+        term 1 {
+            from {
+                route-filter 0.0.0.0/0 exact;
+            }
+            then {
+                local-preference {{get_vrfs.data.local_pref}};
+                accept;
+            }
+        }                                   
+    }
+{%          endif %}
+{%      endfor %}
+{% endif %}
+{%  if 'protect_re' in sys_prop and sys_prop.protect_re.enabled %}
+{%      if ns.mgt4_allowed != [ ] %}
+    prefix-list ip-management {
+{%          for prefix in ns.mgt4_allowed %}
+        {{ prefix }};
+{%          endfor %}
+    }
+{%      endif %}
+{%  if ns.snmp_allowed != [ ] %}
+    prefix-list SNMP-CLIENTS {
+{%      for prefix in ns.snmp_allowed %}
+        {{ prefix }};
+{%      endfor %}
+    }
+{%  endif %}
+{%  if ns.ntp_allowed != [ ] %}
+    prefix-list NTP-SERVERS {
+{%      for prefix in ns.ntp_allowed %}
+        {{ prefix }};
+{%  endfor %}
+    }
+{%  endif %}
+    prefix-list BGP-NEIGHBORS {
+        apply-path "protocols bgp group <*> neighbor <*>";
+    }
+    prefix-list BGP-NEIGHBORS-RI {
+        apply-path "routing-instances <*> protocols bgp group <*> neighbor <*>";
+    }
+    prefix-list ROUTER-IPv4 {
+        apply-path "interfaces <*> unit <*> family inet address <*>";
+    }
+{% endif %}   
+{% if property_sets.leaking_prefix_import is defined %}
+{%      for parent_interface, prefix in function.sorted_dict(property_sets.get('leaking_prefix_import', {}).get(hostname, {}))%}
+    prefix-list import-UIM  {
+{%          for prefixs in prefix.prefix_list %}
+        {{prefixs}};
+{%          endfor %}
+    }
+    policy-statement import-UIM {
+        term 1 {
+            from {
+                family inet;
+                prefix-list import-UIM;
+            }
+            then accept;
+        }
+        term other {
+            then reject;
+        }
+    }
+{%      endfor %}
+{% endif %}
+{% if 'drain' in deploy_mode %}
+    route-filter-list Drain {
+        0.0.0.0/0 upto /32;
+    }
+    policy-statement Drain {
+        term Drain-10 {
+            from {
+                family inet;
+                route-filter-list Drain;
+            }
+            then reject;
+        }
+    }
+{% endif %}
+    policy-statement EVPN-LB {
+        term term1 {
+            from protocol evpn;
+                then {
+                load-balance per-packet;
+            }
+        }
+    }
+    policy-statement import-evpn {
+        term esi-in {
+            from community community-esi-in;
+            then accept;
+        }
+        term default-term {
+            then reject;
+        }
+    }
+    community community-esi-in members target:{{ overlay_asn }}:7999999;
+{% set all_vrf = function.get_resource(resources,'vrfs','overlay')%}
+{% set local_as = function.get_resource_value(resources, 'overlay_asn', 'overlay') %}
+{%- if all_vrf|length %}
+    policy-statement type5_policy {
+        term 1 {
+            from protocol direct;
+            then accept;
+        }
+        term 2 {
+            from protocol static;
+            then accept;
+        }
+        term 3 {
+            from {
+                protocol evpn;              
+                route-filter 0.0.0.0/0 prefix-length-range /32-/32;
+            }
+        then accept;
+        }
+        term 4 {
+            from protocol bgp;
+            then accept;
+        }
+    }
+{% for get_vrfs in all_vrf['groups'] %}
+{%  set ns = namespace() %}
+{%  set ns.name = "" %}
+{%     for vrf_name in get_vrfs['label'] %}
+{%      set ns.name = ns.name + vrf_name %}
+{%     endfor %}
+{% set VRF_loopback = function.get_resource_value(resources, 'ipv4-loopback-vrf', 'overlay', 'vrfs', ns.name) %}
+{% if VRF_loopback %}
+    policy-statement {{ ns.name }}_ADV_DEFAULT_ROUTE {
+        term T1 {
+            from {
+                route-filter 0.0.0.0/0 exact;
+            }
+            then accept;
+        }
+        term T2 {
+            then reject;
+        }
+    }
+{% endif %}
+{% set VRF_id = function.get_resource_value(resources, 'vrf_vxlan_id', 'overlay', 'vrfs', ns.name) %}
+    policy-statement vrf-{{ ns.name }}-import {
+        term t1 {
+            from {
+                community target_{{ overlay_asn }}_{{ VRF_id }};
+            }
+            then {
+                community add target_{{ overlay_asn }}_{{ VRF_id }};
+                accept;
+            }
+        }
+    }
+    policy-statement vrf-{{ ns.name }}-export {
+        term t1 {
+            then {
+                community add target_{{ overlay_asn }}_{{ VRF_id }};
+                accept;
+            }
+        }
+    }
+    community target_{{ overlay_asn }}_{{ VRF_id }} members target:{{ overlay_asn }}:{{ VRF_id }};
+{%          endfor %}   
+{%-     endif -%}
+{% endif %}
+{% set overlay_asn = function.get_resource_value(resources, 'overlay_asn', 'overlay') %}
+{% set all_vlans = function.get_resource(resources,'vlans')%}
+{%- if all_vlans|length -%}
+{%-     for get_vlans in all_vlans['groups'] -%}
+{%      set ns = namespace() %}
+{%      set ns.name = "" %}
+{%          for vlan_name in get_vlans['label'] %}
+{%          set ns.name = ns.name + vlan_name %}
+{%          endfor %}
+{%          set ALL_vlan_info = function.get_resource(resources,ns.name,  'vlans') %}
+{%              for resource  in ALL_vlan_info.resources %}
+{%                          if resource.get('value') and resource.get('label') == 'rt' %}
+{%                  set vlan_ids =  ns.name %}
+{%                  set vni_id = (resource['value']|int) %}
+    policy-statement vn-{{ vlan_ids }}-import {
+        term t1 {
+            then {
+                community add target_{{ overlay_asn }}_{{ vni_id }};
+                accept;
+
+            }
+        }
+    }
+    policy-statement vn-{{ vlan_ids }}-export {
+        term t1 {
+            then {
+                community add target_{{ overlay_asn }}_{{ vni_id }};
+                accept;
+
+            }
+        }
+    }
+    community target_{{ overlay_asn }}_{{ vni_id }} members target:{{ overlay_asn }}:{{ vni_id }};
+{%          endif %}
+{%          endfor %}
+{%- endfor -%} 
+{% endif %}
+{% if property_sets.bgp_vrf_prefix is defined %}
+{% set all_vrf = function.get_resource(resources,'vrfs','overlay')%}
+{%-     if all_vrf|length -%}
+{%-         for get_vrfs in all_vrf['groups'] -%}
+{%          set ns = namespace() %}
+{%          set ns.name = "" %}
+{%-             for vrf_name in get_vrfs['label'] -%}
+{%              set ns.name = ns.name + vrf_name %}
+{%-             endfor -%} 
+{%                  for parent_interface, prefixs in function.sorted_dict(property_sets.get('bgp_vrf_prefix', {}).get(hostname, {}))  %}
+{%                      for prefix_list in prefixs.values()|sort(attribute='vxlan_id') %}
+{%                          if ns.name == prefix_list['vrf_name'] %}
+    prefix-list ADV_TO_{{ ns.name}} {
+{%                              for prefix_adv in prefix_list.prefix_list|map('to_cidr') %}
+        {{prefix_adv}};
+{%                              endfor %}
+    }
+    policy-statement ADV_TO_{{ ns.name}} {
+        term T1 {
+            from {
+                prefix-list ADV_TO_{{ ns.name}};
+            }
+            then accept;
+        }
+        term T2 {
+            then reject;
+        }
+    }
+{%                          endif %}
+{%                      endfor %}
+{%              endfor %}
+{%          endfor %} 
+{%-     endif -%}
+{% endif %}
+}

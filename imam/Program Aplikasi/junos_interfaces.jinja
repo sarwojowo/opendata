@@ -1,0 +1,317 @@
+groups {
+    MTU-VXLAN {
+        interfaces {
+            <ae*> {
+                mtu 9192;
+            }
+        }
+    }
+}
+apply-groups MTU-VXLAN;
+{% for interface_name, iface in interfaces.items() %}
+{%  if loop.first %}
+interfaces {
+{%  endif %}
+{%  set port_settings = iface.get('port_settings', {}).get('interface', {}) %}
+    replace: {{interface_name}} {
+{%  if iface.get('description') %}
+        description "{{iface['description']}}";
+{%  endif %}
+    {# The interface link-mode is derived from the device profile assignment.
+       link_mode is one of automatic, full-duplex or half-duplex.  If link-mode
+       is not specified in the port-settings on the interface transformation,
+       then no link-mode command will be rendered. #}
+{%      if port_settings.get('link_mode') %}
+        link-mode {{ port_settings['link_mode'] }};
+{%      endif %}
+    {# 'auto_negotiation' has three modes which are indicated from the device
+        profile port setting configuration:
+       None/not present: Do not render any auto-negotiation command.  No
+                         auto-negotiation port command is required for this interface
+       True: Explicitly render 'auto-negotiation'
+       False: Explicitly render 'no-auto-negotiation'
+    #}
+{%      if 'auto_negotiation' in port_settings %}
+        ether-options {
+{%          if port_settings['auto_negotiation'] %}
+            auto-negotiation;
+{%          else %}
+            no-auto-negotiation;
+{%          endif %}
+        }
+{%      endif %}
+    {# This member interface is part of a LAG, as indicated by 'part_of' having
+       an assigned value.  'part_of' is the name of the LAG interface, eg 'ae1'
+
+       Note that even if LACP 802.3ad is not being used (Static LAG), ether-options
+       802.3ad still needs to be configured to indicate LAG membership. This does
+       not imply that LACPDUs will be sent or received. #}
+{%      if iface.get('part_of') and iface.get('lag_mode') in ['lacp_active', 'lacp_passive', 'static_lag'] %}
+        ether-options {
+            802.3ad {{iface['part_of']}};
+        }
+{%      endif %}
+{% set esi_lags = namespace(esi_intfs={}, lacp_system_ids={}) %}
+{%      for interface_name, intf_resources in interface_resources.items() %}
+{%          for resource in intf_resources if resource['label'] == 'lacp' %}
+{%              for r in resource['resources'] %}
+{%                  if r.get('value') and r.get('label') == 'lacp_system_ids' %}
+{%                  set esi_prefix = '00:01:00:00:' %}
+{%                  set mac_address = '{:012X}'.format(r['value']|int) %}
+{%                  set esi_address = esi_prefix + mac_address|to_mac_format('hyphen')|replace('-', ':') %}
+{%                  do esi_lags.esi_intfs.update({interface_name: esi_address}) %}
+{%                  endif %}
+{%                      if r.get('value') and r.get('label') == 'lacp_system_ids' %}
+{%                      set mac_address = '{:012X}'.format(r['value']|int + 10000) %}
+{%                      set mac_address = mac_address|to_mac_format('hyphen')|replace('-', ':') %}
+{%                      do esi_lags.lacp_system_ids.update({interface_name: mac_address}) %}
+{%                      endif %}
+{%              endfor %}
+{%          endfor %}
+{%       endfor %}
+{% if iface.get('composed_of') %}
+{% set esi_id = esi_lags.esi_intfs.get(interface_name) %}
+{% set lacp_system_id = esi_lags.lacp_system_ids.get(interface_name) %}
+{%      if 'esi_id' in iface.link_tags  %}
+        esi {
+            {{esi_id}};
+            all-active;
+        }
+{%      endif %}
+{% set lacp_mode = {'lacp_active': 'active', 'lacp_passive': 'passive'}.get(iface['lag_mode']) %}
+        aggregated-ether-options {
+            lacp {
+                {{lacp_mode}};
+{%              if lacp_system_id %}
+                system-id {{lacp_system_id}};
+{%              endif %}
+            }
+        }
+{% endif %}
+    {# The 'speed' setting comes from the device profile transformation associated
+       to this interface.  Some interfaces require explicit deactivation when used
+       in certain port break-out configurations. #}
+{% if port_settings.get('speed') %}
+{%      if port_settings['speed'] == 'junos_deactivated' %}
+        unused;
+{%      else %}
+        speed {{ port_settings['speed'] }};
+{%      endif %}
+{% endif %}
+    {# Some Juniper platforms require explicit configuration of a sub port quantity
+       in order to indicate physical channelized breakout requirements. #}
+{% if port_settings.get('sub-ports-count') %}
+        number-of-sub-ports {{ port_settings['sub-ports-count'] }};
+{% endif %}
+{%      if iface.get('ipv4_address') or iface.get('ipv6_address') %}
+        mtu 9192;
+        unit 0 {
+{%          if iface.get('ipv4_address') and iface.get('ipv4_prefixlen') %}
+            family inet {
+                address {{iface['ipv4_address']}}/{{iface['ipv4_prefixlen']}};
+            }
+{%          endif %}
+{%      if iface.get('ipv6_address') and iface.get('ipv6_prefixlen') %}
+            family inet6 {
+                address {{iface['ipv6_address']}}/{{iface['ipv6_prefixlen']}};
+            }
+{%      endif %}
+        }
+{%      elif 'tagged_vlans' in iface.link_tags  or 'access' in iface.link_tags %}
+        mtu 9192;
+        unit 0 {
+            family ethernet-switching {
+{%      set intf_mode = 'trunk' if 'tagged_vlans' in iface.link_tags else 'access' %}
+                interface-mode {{intf_mode}};
+                vlan {
+                    members [
+{% set all_vlans = function.get_resource(resources,'vlans')%}
+{%- if all_vlans|length -%} 
+{%-     for get_vlans in all_vlans['groups'] -%}
+{%      set ns = namespace() %}
+{%      set ns.name = "" %}
+{%          for vlan_name in get_vlans['label'] %}
+{%          set ns.name = ns.name + vlan_name %}
+{%          endfor %}
+{%          set ALL_vlan_info = function.get_resource(resources,ns.name,  'vlans') %}
+{%              for resource  in ALL_vlan_info.resources %}
+{%-                 for intf_tag in resource['assigned_to']-%}  
+{%                      if intf_tag == iface.id  %}
+{%                      set vlan_np = resource['value'] %}
+                        bd-{{vlan_np}}
+{%                      endif -%}
+{%                  endfor -%}
+{%              endfor %}
+{%-      endfor -%} 
+{% endif %}
+                    ]
+                }
+            }
+        }
+{% elif 'sp-style'  in iface.link_tags %}
+        mtu 9192;
+        flexible-vlan-tagging;
+        encapsulation flexible-ethernet-services;
+{% set all_vlans = function.get_resource(resources,'vlans')%}
+{%- if all_vlans|length -%} 
+{%-     for get_vlans in all_vlans['groups'] -%}
+{%      set ns = namespace() %}
+{%      set ns.name = "" %}
+{%          for vlan_name in get_vlans['label'] %}
+{%          set ns.name = ns.name + vlan_name %}
+{%          endfor %}
+{%          set ALL_vlan_info = function.get_resource(resources,ns.name,  'vlans') %}
+{%              for resource  in ALL_vlan_info.resources %}
+{%-                 for intf_tag in resource['assigned_to']-%}  
+{%                      if intf_tag == iface.id  %}
+{%                      set vlan_np = resource['value'] %}
+        unit {{vlan_np}} {
+            vlan-id {{vlan_np}};
+{%                  set get_ipv4s = function.get_resource_value(resources, 'ipv4_address', 'vlans', ns.name) %}
+{%                  set get_ipv6s = function.get_resource_value(resources, 'ipv6_address', 'vlans', ns.name) %}
+{%                  set ALL_vlan_info = function.get_resource(resources,ns.name, 'vlans') %}
+{%          if get_ipv4s %}
+            family inet {
+                address {{get_ipv4s}};
+            }
+{%          endif %}
+        }
+{%                      endif -%}
+{%                  endfor -%}
+{%              endfor %}
+{%-          endfor -%} 
+{%      endif %}
+{% endif %}
+    }
+
+
+
+    {% if loop.last %}
+}
+    {% endif %}
+
+{% endfor %}
+{% set all_vrf = function.get_resource(resources,'vrfs','overlay')%}
+{%- if all_vrf|length -%}
+{%-     for get_vrfs in all_vrf['groups'] -%}
+{%      set ns = namespace() %}
+{%      set ns.name = "" %}
+{%-         for vrf_name in get_vrfs['label'] -%}
+{%          set ns.name = ns.name + vrf_name %}
+{%-         endfor -%} 
+{%          set VRF_loopback = function.get_resource_value(resources, 'ipv4-loopback-vrf', 'overlay', 'vrfs', ns.name) %}
+{%          set VRF_loopback_ipv6 = function.get_resource_value(resources, 'ipv6-loopback-vrf', 'overlay', 'vrfs', ns.name) %}
+{%          set VRF_id = function.get_resource_value(resources, 'vrf_vxlan_id', 'overlay', 'vrfs', ns.name) %}
+{%          set loopback_ipv4 = function.get_resource_value(resources, 'ipv4_loopback', 'underlay') %}
+{%          set sys_prop = property_sets.get('custom_sys_properties', {} ) %}
+{% if loop.first %}
+interfaces {
+{% endif %}
+    lo0 {
+        unit {{VRF_id}} {
+{%          if 'protect_re' in sys_prop and sys_prop.protect_re.enabled %}
+            family inet {
+                filter {
+                    input protect-re;
+                }
+            }
+{%          endif %}
+            description "loopback vrf: {{ns.name}}.{{VRF_id}}";
+            family inet {
+{%              if not VRF_loopback %}
+                    address 127.0.0.1/32;
+{%                  elif  VRF_loopback %}
+                    address {{VRF_loopback}};
+{%              endif %}
+            }
+{%              if VRF_loopback_ipv6 %}
+            family inet6 {
+                    address {{VRF_loopback_ipv6}};
+                }
+{%              endif %}
+        }
+    }
+{% if loop.last %}
+}
+{% endif %}
+{%      endfor %}   
+{%- endif -%}
+{% set loopback_ipv4 = function.get_resource_value(resources, 'ipv4_loopback', 'underlay') %}
+{% set sys_prop = property_sets.get('custom_sys_properties', {} ) %}
+interfaces {
+    lo0 {
+        unit 0 {
+        description "loopback Global";
+{%          if 'protect_re' in sys_prop and sys_prop.protect_re.enabled %}
+            family inet {
+                filter {
+                    input protect-re;
+                }
+            }
+{%          endif %}
+            family inet {
+                address {{loopback_ipv4}};
+            }
+        }
+    }
+}
+{% set all_vlans = function.get_resource(resources,'vlans')%}
+{%- if all_vlans|length -%}
+{%-     for get_vlans in all_vlans['groups'] -%}
+{%      set ns = namespace() %}
+{%      set ns.name = "" %}
+{%          for vlan_name in get_vlans['label'] %}
+{%          set ns.name = ns.name + vlan_name %}
+{%          endfor %}
+{% set get_vlan = function.get_resource_value(resources, ns.name, 'vlans', ns.name) %}
+{% set get_vni = function.get_resource_value(resources, 'vni', 'vlans', ns.name) %}
+{% set get_ipv4s = function.get_resource_value(resources, 'ipv4_address', 'vlans', ns.name) %}
+{% set get_ipv6s = function.get_resource_value(resources, 'ipv6_address', 'vlans', ns.name) %}
+{% set get_vga_ipv4s = function.get_resource_value(resources, 'ipv4_virtual_gateway_address', 'vlans', ns.name) %}
+{% set get_vga_ipv6s = function.get_resource_value(resources, 'ipv6_virtual_gateway_address', 'vlans', ns.name) %}
+{% set ALL_vlan_info = function.get_resource(resources,ns.name, 'vlans') %}
+{%- if loop.first %}
+interfaces {
+    irb {
+    mtu 9000;
+    {% endif %}
+{%  if get_ipv4s or get_ipv6s %}{% if not 'sp-style' in ALL_vlan_info.data.mode_style %}
+    unit {{get_vlan}} {
+    description "IRB : L3-vlan-{{get_vlan}}-to-{{ns.name}}-vrf_{{ALL_vlan_info.data.vrf_name}}";
+{%      if not 'leaf-agg' in system_tags %}
+    proxy-macip-advertisement;
+    virtual-gateway-accept-data;
+    virtual-gateway-v4-mac 00:00:5e:01:00:01;
+    family inet {
+            address {{ get_ipv4s }}{
+                preferred;
+{%-             if get_vga_ipv4s %}    
+                virtual-gateway-address {{get_vga_ipv4s.split('/')[0]}};
+{%-             endif %}    
+                }
+            }
+{%  if get_ipv6s %}
+    family inet6 {
+            address {{ get_ipv6s }} {
+                preferred;
+{%-         if get_vga_ipv6s %}    
+                virtual-gateway-address {{get_vga_ipv6s.split('/')[0]}};
+{%-         endif %}    
+                }
+            }
+{%- endif %}
+{%  else %}
+    mac 00:00:5e:01:00:01;
+    family inet {
+        address {{ get_ipv4s }};
+            }
+{%  endif %}
+        }
+{%      endif -%}
+{%  endif %}
+{%          if loop.last %}
+    }
+}
+{%-         endif %}
+{%-     endfor %} 
+{% endif %}

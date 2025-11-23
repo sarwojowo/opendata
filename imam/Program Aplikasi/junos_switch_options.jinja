@@ -1,0 +1,24 @@
+{% if not 'mac-vrf' in  system_tags %}
+{% set loopback_ipv4 = function.get_resource_value(resources, 'ipv4_loopback', 'underlay') %}
+{% set overlay_asn = function.get_resource_value(resources, 'overlay_asn', 'overlay') %}
+
+switch-options {
+    vtep-source-interface lo0.0;
+    route-distinguisher {{loopback_ipv4|to_network}}:7999;
+    vrf-target target:{{ overlay_asn }}:7999999;
+    vrf-import import-evpn;
+    vrf-target auto;
+{% set all_vlans = function.get_resource(resources,'vlans')%}
+{%- if all_vlans|length -%}
+{%-     for get_vlans in all_vlans['groups'] -%}
+{%      set ns = namespace() %}
+{%      set ns.name = "" %}
+{%          for vlan_name in get_vlans['label'] %}
+{%          set ns.name = ns.name + vlan_name %}
+{%          endfor %}
+
+    vrf-import vn-{{ ns.name  }}-import;
+{%      endfor %}
+{% endif %}
+}
+{% endif %}

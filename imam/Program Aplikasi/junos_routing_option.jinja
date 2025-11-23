@@ -1,0 +1,103 @@
+{% set loopback_ipv4 = function.get_resource_value(resources, 'ipv4_loopback', 'underlay') %}
+{% set overlay_asn = function.get_resource_value(resources, 'overlay_asn', 'overlay') %}
+
+routing-options {
+  router-id {{loopback_ipv4|to_network}};
+  route-distinguisher-id {{loopback_ipv4|to_network}};
+  autonomous-system {{ overlay_asn }} loops 2;
+  resolution {
+    rib bgp.rtarget.0 {
+        resolution-ribs inet.0;
+        }
+{% if 'spine' in system_tags %}
+    rib bgp.l3vpn.0 {
+        resolution-ribs [ inet.3 inet.0 ];
+        }
+{% endif %}
+    }
+    forwarding-table {
+        export [ PFE-LB EVPN-LB ];
+        ecmp-fast-reroute;
+        chained-composite-next-hop {
+           ingress {
+               evpn;                   
+            }
+        }   
+    }
+
+    rib-groups {
+{% if property_sets.leaking_prefix_import is defined %}
+        DEFAULT_to_OAM {
+            import-rib [ DEFAULT.inet.0 VPN_OAM.inet.0 ];
+            import-policy import-UIM;
+        }                               
+        OAM_to_DEFAULT {
+            import-rib [ VPN_OAM.inet.0 DEFAULT.inet.0 ];
+            import-policy import-UIM;
+        }
+{%  endif %}
+{% set all_vrf = function.get_resource(resources,'vrfs','overlay')%}
+{# This section is for End to End IF Loop #}
+{%- if all_vrf|length -%}
+{# This section is for End to End FOR Loop #}
+{%-     for get_vrfs in all_vrf['groups'] -%}
+{%      set ns = namespace() %}
+{%      set ns.name = "" %}
+{%-         for vrf_name in get_vrfs['label'] -%}
+            {% set ns.name = ns.name + vrf_name %}
+{%-         endfor -%} 
+{# This section is for rib-groups #}
+{%      if 'enable' in get_vrfs.data.vrf_leaking %}
+    	{% set vrf = ns.name %}
+{% set rb = namespace(rib_group_name="")%}
+{% for n in range(1,3) %}
+    {% if n==2 and (vrf =="DEFAULT"or vrf=="VPN_OAM") %}
+        {%continue%}
+    {% endif %}
+{%      for vrf_list in get_vrfs.data.vrf_parent %}
+{%          if n == 2 and loop.index == 1 %}
+{%          set rb.rib_group_name ="BGP-"+vrf %}
+{%-         endif -%}
+{%              if n == 1 and loop.index == 1 %}
+{%              set rb.rib_group_name = vrf %}
+{%-             endif -%}
+{%          if loop.index == 1 %}
+{%          set rb.rib_group_name = rb.rib_group_name+"_to_"+vrf_list %}
+{%-         endif -%}
+{%-             if loop.index > 1 -%}
+{%              set rb.rib_group_name= rb.rib_group_name+"-and-"+vrf_list%}
+{%             endif %}
+{%      if loop.last %}
+        {{rb.rib_group_name}} {
+{%      endif%}
+{%      endfor %}
+{%      if loop.index == 1 and loop.first %}
+            import-rib {{ vrf }}.inet.0;
+{%          for vrf_list in get_vrfs.data.vrf_parent %}
+            import-rib {{ vrf_list }}.inet.0;
+{%          endfor %}
+{%      endif %}
+{%      if loop.index > 1 and loop.last %}
+            import-rib {{ vrf }}.inet.0;
+{%          for vrf_list in get_vrfs.data.vrf_parent %}
+            import-rib {{ vrf_list }}.inet.0;
+{%          endfor %}
+{%      endif %}
+{%-     if n == 2 %}
+            import-policy RCV_FROM_F5_IPV4_PREF_{{get_vrfs.data.local_pref}}_{{all_vrf.data.SITE}};
+{%      endif %}           
+{%- if get_vrfs.data.local_pref is not defined or (n==1 and vrf !=  "DEFAULT"  and vrf != "VPN_OAM")%}
+{%      if loop.last %}
+        }
+{%      endif %}
+{%  endif %}
+{%- if get_vrfs.data.local_pref is defined or (n==2 or vrf=="DEFAULT" and vrf =="VPN_OAM")%}
+        }
+{%      endif %}
+{%      endfor %}
+{%      endif %}
+{%-         endfor -%}
+{%  endif %}
+    }
+
+}

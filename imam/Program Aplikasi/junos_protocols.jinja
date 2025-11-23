@@ -1,0 +1,274 @@
+{% set loopback_ipv4 = function.get_resource_value(resources, 'ipv4_loopback', 'underlay') %}
+{% set underlay_asn = function.get_resource_value(resources, 'underlay_asn', 'underlay') %}
+{% set overlay_asn = function.get_resource_value(resources, 'overlay_asn', 'overlay') %}
+protocols {
+    lldp {
+        port-id-subtype interface-name;
+        port-description-type interface-description;
+        neighbour-port-info-display port-id;
+        interface all;
+    }
+{% if function.min_os_version('22.2R2') %}
+    l2-learning {
+        telemetry {
+            enable-remote-entries;
+        }
+    }
+{% endif %}
+    replace: rstp {
+        bridge-priority 0;
+        bpdu-block-on-edge;
+    }
+    l2-learning {
+        global-mac-table-aging-time 1800;
+    }
+    bgp {
+        group UNDERLAY {
+            family inet {
+            unicast;
+            }
+            mtu-discovery;
+            type external;
+            {% if 'drain' in deploy_mode %}
+            export Drain;
+            import Drain;
+            {% else %}
+            export UNDERLAY-EXPORT;
+            {% endif %}
+            multipath {
+                multiple-as;
+            }
+            local-as {{underlay_asn }};
+{%  set bgp_ns = namespace(neighbor_asn=None) %}
+{%      for interface_name, iface in interfaces.items() %}
+{%          if not iface.get('ipv4_address') %}
+{%          continue %}
+{%          endif %}
+{%          set neighbor_interfaces = iface.get('neighbor_interfaces', []) %}
+{%              for neighbor_interface in neighbor_interfaces if neighbor_interface.get('ipv4_address') %}
+{%              set bgp_ns.neighbor_asn = function.get_resource_value(all_resources.get(neighbor_interface.system_id), 'underlay_asn', 'underlay') %}
+            neighbor {{ neighbor_interface.ipv4_address }} {
+                description facing_{{ neighbor_interface.system_hostname }}-Underlay;
+                peer-as {{ bgp_ns.neighbor_asn }};
+                bfd-liveness-detection {
+                    minimum-interval 1000;
+                    multiplier 3;
+                }
+            }
+{%              endfor %}
+{%      endfor %}
+        }
+{% if 'spine' in system_tags %}
+        group OVERLAY {
+            family evpn {
+                signaling;
+            }
+            family route-target;
+            multipath;
+            hold-time 90;
+            vpn-apply-export;
+            local-as {{overlay_asn}} loops 2;
+            type internal;
+{%          if 'drain' in deploy_mode %}
+            export Drain;
+            import Drain;
+{%          else %}
+            export evpn_export_policy;
+{%          endif %}
+            local-address {{loopback_ipv4|to_network}};
+            cluster {{loopback_ipv4|to_network}};
+{%  set bgp_ns = namespace(neighbor_asn=None) %}
+{%      for interface_name, iface in interfaces.items() %}
+{%          if not function.get_resource_value(resources, 'ipv4_loopback', 'underlay') %}
+{%          continue %}
+{%          endif %}
+{%          set neighbor_interfaces = iface.get('neighbor_interfaces', []) %}
+{%              for neighbor_interface in neighbor_interfaces if neighbor_interface.get('ipv4_address') %}
+{%              set bgp_ns.neighbor_loopback = function.get_resource_value(all_resources.get(neighbor_interface.system_id), 'ipv4_loopback', 'underlay') %}
+            neighbor {{ bgp_ns.neighbor_loopback|to_network }} {
+                description facing_{{ neighbor_interface.system_hostname }}-Overlay;
+                bfd-liveness-detection {
+                    minimum-interval 1000;
+                    multiplier 3;
+                }
+            }
+{%              endfor %}
+{%      endfor %}
+        }
+{%  else %}
+{%      if not 'access' in system_tags %}
+        group OVERLAY {
+            family evpn {
+                signaling;
+            }
+            family route-target;
+            local-as {{overlay_asn}} loops 2;
+            multipath;
+            hold-time 90;
+            vpn-apply-export;
+{%          if 'leaf-rr' in system_tags %}
+            cluster {{loopback_ipv4|to_network}};
+{%          endif %}
+            bfd-liveness-detection {
+                minimum-interval 1000;
+                multiplier 3;
+                session-mode automatic;
+            }
+            type internal;
+            export evpn_export_policy;
+            local-address {{ loopback_ipv4|to_network }};
+{%          set bgp_ns = namespace(neighbor_asn=None) %}
+{%              for interface_name, iface in interfaces.items() %}
+{%                  if not function.get_resource_value(resources, 'ipv4_loopback', 'underlay') %}
+{%                  continue %}
+{%                  endif %}
+{%                      set neighbor_interfaces = iface.get('neighbor_interfaces', []) %}
+{%                      for neighbor_interface in neighbor_interfaces if neighbor_interface.get('ipv4_address') %}
+{%                      set bgp_ns.neighbor_loopback = function.get_resource_value(all_resources.get(neighbor_interface.system_id), 'ipv4_loopback', 'underlay') %}
+{%                          if 'spine' in neighbor_interface.system_tags %}
+            neighbor {{ bgp_ns.neighbor_loopback|to_network }} {
+                description facing_{{ neighbor_interface.system_hostname }}-Overlay;
+                bfd-liveness-detection {
+                    minimum-interval 1000;
+                    multiplier 3;
+                    }
+                }
+{%                          endif -%}
+{%                      endfor %}
+{%              endfor %}
+        }
+{%      endif %}
+{%  endif %}
+{%  if 'access' in system_tags %}
+        group OVERLAY {
+        type external;
+        local-as {{underlay_asn}};;
+        local-address {{loopback_ipv4|to_network}};
+        multipath {
+            multiple-as;
+        }
+        multihop {
+{%      if 'leaf' in system_tags %}
+            no-nexthop-change;
+{%      endif %}
+            ttl 2;
+        }
+        family route-target;
+        family evpn {
+            signaling;
+        }
+        export evpn_export_policy;
+        vpn-apply-export;
+{% set bgp_ns = namespace(neighbor_asn=None) %}
+{%          for interface_name, iface in interfaces.items() %}
+{%              if not function.get_resource_value(resources, 'ipv4_loopback', 'underlay') %}
+{%              continue %}
+{%              endif %}
+{%              set neighbor_interfaces = iface.get('neighbor_interfaces', []) %}
+{%                  for neighbor_interface in neighbor_interfaces if neighbor_interface.get('ipv4_address') %}
+{%                  set bgp_ns.neighbor_loopback = function.get_resource_value(all_resources.get(neighbor_interface.system_id), 'ipv4_loopback', 'underlay') %}
+{%                  set bgp_ns.neighbor_asn = function.get_resource_value(all_resources.get(neighbor_interface.system_id), 'underlay_asn', 'underlay') %}
+{%                      if 'leaf' in neighbor_interface.system_tags %}
+        neighbor {{ bgp_ns.neighbor_loopback|to_network }} {
+           description facing_{{ neighbor_interface.system_hostname }}-Overlay;
+           peer-as {{ overlay_asn }};
+           bfd-liveness-detection {
+               minimum-interval 1000;
+               multiplier 3;
+               }
+           }
+{%                      endif -%}
+{%                  endfor %}
+{%          endfor %}
+       }
+{%  endif %}
+{%  if 'leaf' in system_tags  %}
+        group OVERLAY-ACC {
+            type external;
+            local-as {{overlay_asn}} loops 2;
+            local-address {{loopback_ipv4|to_network}};
+            multipath {
+                multiple-as;
+            }
+        multihop {
+{%      if 'leaf' in system_tags %}
+            no-nexthop-change;
+{%      endif %}
+            ttl 2;
+        }
+        family route-target;
+        family evpn {
+            signaling;
+        }
+        export evpn_export_policy;
+        vpn-apply-export;
+{%      set bgp_ns = namespace(neighbor_asn=None) %}
+{%          for interface_name, iface in interfaces.items() %}
+{%              set neighbor_interfaces = iface.get('neighbor_interfaces', []) %}
+{%                  for neighbor_interface in neighbor_interfaces if neighbor_interface.get('ipv4_address') %}
+{%                  set bgp_ns.neighbor_loopback = function.get_resource_value(all_resources.get(neighbor_interface.system_id), 'ipv4_loopback', 'underlay') %}
+{%                  set bgp_ns.neighbor_asn = function.get_resource_value(all_resources.get(neighbor_interface.system_id), 'underlay_asn', 'underlay') %}
+{%                      if 'access' in neighbor_interface.system_tags %}
+        neighbor {{ bgp_ns.neighbor_loopback|to_network }} {
+           description facing_{{ neighbor_interface.system_hostname }}-Overlay;
+           peer-as {{ bgp_ns.neighbor_asn }};
+           bfd-liveness-detection {
+               minimum-interval 1000;
+               multiplier 3;
+               }
+           }
+{%                      endif -%}
+{%                  endfor %}
+{%          endfor %}
+        }
+{%  endif %}
+    }
+    evpn {
+        encapsulation vxlan;
+        default-gateway no-gateway-community;
+        multicast-mode ingress-replication;
+        extended-vni-list all;
+        duplicate-mac-detection {
+            detection-threshold 20;
+            detection-window 5;    
+            auto-recovery-time 5;
+        }
+    }
+{%  set overlay_asn = function.get_resource_value(resources, 'overlay_asn', 'overlay') %}
+{%  set all_vlans = function.get_resource(resources,'vlans')%}
+{%- if all_vlans|length -%}
+{%-     for get_vlans in all_vlans['groups'] -%}
+{%      set ns = namespace() %}
+{%      set ns.name = "" %}
+{%          for vlan_name in get_vlans['label'] %}
+{%          set ns.name = ns.name + vlan_name %}
+{%          endfor %}
+{%      if loop.first %}
+    evpn {
+{%      endif %}
+{%          set ALL_vlan_info = function.get_resource(resources,ns.name,  'vlans') %}
+{%              for resource  in ALL_vlan_info.resources %}
+{%                  if loop.first %}
+        vni-options {
+{%                  endif %}
+{%                      if resource.get('value') and resource.get('label') == 'vni' %}
+{%          set vni_id = (resource['value']|int) %}
+            vni {{ vni_id }} {
+{%                          for resource  in ALL_vlan_info.resources %}
+{%                              if resource.get('value') and resource.get('label') == 'rt' %}
+{%              set rt = (resource['value']|int) %}
+                vrf-target target:{{ overlay_asn }}:{{ rt }};
+{%                              endif %}
+{%                          endfor %}
+            }
+{%                      endif %}
+{%  if loop.last %}
+        }
+{%  endif %}
+{%              endfor %}
+{% if loop.last %}
+    }
+{% endif %}
+{%-     endfor -%} 
+{% endif %}
+}
