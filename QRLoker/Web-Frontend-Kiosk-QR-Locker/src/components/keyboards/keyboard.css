@@ -1,0 +1,44 @@
+@reference "./../../index.css";
+
+.hg-theme-default {
+    @apply bg-transparent py-3
+}
+.hg-theme-default .hg-button {
+    @apply bg-white text-gray-600
+}
+.hg-theme-default .hg-row:not(:last-child) {
+    margin-bottom: 8px;
+}
+
+.email .hg-button:active, .numeric .hg-button:active {
+    @apply bg-primary text-white
+}
+
+.hg-theme-default.email .hg-row:not(:last-child) {
+    margin-bottom: 1px;
+}
+.hg-theme-default.email .hg-row {
+    display: flex;
+    justify-content: center;
+}
+.hg-theme-default.email .hg-button {
+    /* @apply flex justify-center items-center flex-grow-0 h-[75px] w-[75px] 2xl:h-[100px] 2xl:w-[100px] text-[30px] 2xl:text-[38px] my-1.5 mx-3 2xl:my-2.5 2xl:mx-5 rounded-full border-none shadow-lg hover:bg-primary hover:text-white */
+    @apply flex justify-center items-center flex-grow-0 h-[40px] w-[40px] sm:h-[75px] sm:w-[75px] 2xl:h-[100px] 2xl:w-[100px] text-[20px] sm:text-[30px] 2xl:text-[38px] m-1 sm:my-1.5 sm:mx-3 2xl:my-2.5 2xl:mx-5 rounded-full border-none shadow-lg
+}
+
+.hg-theme-default.numeric .hg-button {
+    @apply flex justify-center items-center flex-grow-0 h-[120px] w-[120px] sm:h-[130px] sm:w-[130px] 2xl:h-[120px] 2xl:w-[120px] text-[42px] 2xl:text-[38px] mx-4 my-1 sm:my-0.5 sm:mx-4 2xl:my-2 2xl:mx-5 rounded-full border-none shadow-lg
+}
+.email .hg-red {
+    @apply bg-primary !w-[150px] 2xl:!w-[220px] text-white !text-sm sm:!text-lg 2xl:!text-2xl
+}
+.email .hg-space {
+    @apply !w-[330px] 2xl:!w-[450px]
+}
+.email .hg-at {
+    @apply min-w-[75px] 2xl:min-w-[120px]
+}
+
+.numeric .hg-delete {
+    @apply bg-primary text-white !text-3xl
+}
