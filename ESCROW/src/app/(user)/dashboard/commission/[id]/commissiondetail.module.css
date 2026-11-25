@@ -1,0 +1,123 @@
+.container {
+  padding: 40px;
+  color: #fff;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.image {
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.info {
+  margin-top: 10px;
+  color: #ccc;
+}
+
+.section {
+  margin-top: 24px;
+}
+
+.divider {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #333;
+}
+
+.noteBox {
+  background: #1f2937;
+  padding: 12px;
+  border-radius: 6px;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+.emptyNote {
+  color: #666;
+}
+
+.button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.primaryBtn {
+  background: #3b82f6;
+  color: white;
+}
+
+.successBtn {
+  background: #10b981;
+  color: white;
+}
+
+.warningBtn {
+  background: #f59e0b;
+  color: black;
+}
+
+.dangerBtn {
+  background: #ef4444;
+  color: white;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.uploadSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rejectedBox {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 6px;
+  background: #2b1a1a;
+  border: 1px solid #7f1d1d;
+}
+
+.rejectedTitle {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+.deadlineBox {
+  background: #1e293b;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border: 1px solid #334155;
+  color: #ccc;
+}
+
+.button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.deadlineBox,
+.noteBox,
+.rejectedBox {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}

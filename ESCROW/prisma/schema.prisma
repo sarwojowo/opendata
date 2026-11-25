@@ -1,0 +1,219 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                   BigInt                @id @default(autoincrement())
+  name                 String?
+  wallet               String                @unique
+  profile_image_url    String?
+  background_image_url String?
+  biodata              String?
+  created_at           DateTime              @default(now()) @db.Timestamptz(3)
+  updated_at           DateTime?             @updatedAt @db.Timestamptz(3)
+  deleted_at           DateTime?             @db.Timestamptz(3)
+  participations       ChattingParticipant[]
+  creators             Creator[]
+  likes                Like[]
+  messages             Message[]
+  orders               Order[]
+  postings             Posting[]
+
+  @@map("users")
+}
+
+model Posting {
+  id          BigInt    @id @default(autoincrement())
+  user_id     BigInt
+  title       String
+  likes_count Int?
+  image_url   String?
+  created_at  DateTime  @default(now()) @db.Timestamptz(3)
+  updated_at  DateTime? @updatedAt @db.Timestamptz(3)
+  deleted_at  DateTime? @db.Timestamptz(3)
+  likes       Like[]
+  user        User      @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("postings")
+}
+
+model Creator {
+  id           BigInt    @id @default(autoincrement())
+  user_id      BigInt
+  phone_number String
+  created_at   DateTime  @default(now()) @db.Timestamptz(3)
+  updated_at   DateTime? @updatedAt @db.Timestamptz(3)
+  deleted_at   DateTime? @db.Timestamptz(3)
+  user         User      @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  services     Service[]
+
+  @@map("creators")
+}
+
+model Service {
+  id          BigInt    @id @default(autoincrement())
+  creator_id  BigInt
+  name        String
+  image_url   String
+  description String?
+  price       Decimal   @db.Decimal
+  created_at  DateTime  @default(now()) @db.Timestamptz(3)
+  updated_at  DateTime? @updatedAt @db.Timestamptz(3)
+  deleted_at  DateTime? @db.Timestamptz(3)
+  orders      Order[]
+  creator     Creator   @relation(fields: [creator_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("services")
+}
+
+model Order {
+  id                  BigInt            @id @default(autoincrement())
+  service_id          BigInt
+  user_id             BigInt
+  status              order_status      @default(PENDING_ACCEPTANCE)
+  reference_image_url String?
+  note                String?
+  created_at          DateTime          @default(now()) @db.Timestamptz(3)
+  updated_at          DateTime?         @updatedAt @db.Timestamptz(3)
+  deleted_at          DateTime?         @db.Timestamptz(3)
+  escrow              Escrow?           @relation("OrderEscrow")
+  historical          OrderHistorical[]
+  service             Service           @relation(fields: [service_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "orders_service_id_fkey")
+  user                User              @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([user_id])
+  @@index([service_id])
+  @@index([status])
+  @@map("orders")
+}
+
+model Escrow {
+  id              BigInt        @id @default(autoincrement())
+  order_id        BigInt        @unique
+  escrow_address  String        @unique
+  client_address  String
+  artist_address  String
+  arbiter_address String
+  amount          Decimal       @db.Decimal(36, 18)
+  status          escrow_status @default(CREATED)
+
+  work_deadline   DateTime? @db.Timestamptz(3)
+  review_deadline DateTime?     @db.Timestamptz(3)
+
+  tx_hash         String?
+  submission_url  String?
+
+  reject_reason   String?
+  rejected_by     String?
+  rejected_at     DateTime? @db.Timestamptz(3)
+
+  created_at      DateTime      @default(now()) @db.Timestamptz(3)
+  updated_at      DateTime?     @updatedAt @db.Timestamptz(3)
+
+  order           Order         @relation("OrderEscrow", fields: [order_id], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@map("escrows")
+}
+
+model Like {
+  id         BigInt    @id @default(autoincrement())
+  user_id    BigInt
+  posting_id BigInt
+  created_at DateTime  @default(now()) @db.Timestamptz(3)
+  deleted_at DateTime? @db.Timestamptz(3)
+  posting    Posting   @relation(fields: [posting_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user       User      @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("likes")
+}
+
+model ChattingRoom {
+  id           BigInt                @id @default(autoincrement())
+  created_at   DateTime              @default(now()) @db.Timestamptz(3)
+  deleted_at   DateTime?             @db.Timestamptz(3)
+  participants ChattingParticipant[]
+  messages     Message[]
+
+  @@map("chatting_room")
+}
+
+model ChattingParticipant {
+  id         BigInt          @id @default(autoincrement())
+  room_id    BigInt
+  user_id    BigInt
+  role       ParticipantRole @default(USER)
+  created_at DateTime        @default(now()) @db.Timestamptz(3)
+  room       ChattingRoom    @relation(fields: [room_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  user       User            @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([room_id, user_id])
+  @@map("chatting_participants")
+}
+
+model Message {
+  id               BigInt       @id @default(autoincrement())
+  user_id          BigInt
+  chatting_room_id BigInt
+  content          String
+  created_at       DateTime     @default(now()) @db.Timestamptz(3)
+  deleted_at       DateTime?    @db.Timestamptz(3)
+  chattingRoom     ChattingRoom @relation(fields: [chatting_room_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user             User         @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("messages")
+}
+
+model OrderHistorical {
+  id         BigInt    @id @default(autoincrement())
+  order_id   BigInt
+  tx_hash    String?
+  created_at DateTime  @default(now()) @db.Timestamptz(3)
+  deleted_at DateTime? @db.Timestamptz(3)
+  type       order_history_type
+  order      Order     @relation(fields: [order_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([order_id])
+  @@index([order_id, type])
+  @@map("order_historical")
+}
+
+enum ParticipantRole {
+  USER
+  CREATOR
+  ARBITER
+}
+
+enum order_status {
+  PENDING_ACCEPTANCE
+  IN_PROGRESS
+  DELIVERED
+  DISPUTED
+  COMPLETED
+  CANCELLED
+}
+
+enum escrow_status {
+  CREATED
+  FUNDED
+  IN_PROGRESS
+  SUBMITTED
+  RELEASED
+  DISPUTED
+  REFUNDED
+}
+
+enum order_history_type {
+  DEPOSIT
+  START
+  SUBMIT
+  APPROVE
+  DISPUTE
+  RESOLVE
+  REJECT
+  REFUND
+} 

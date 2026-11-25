@@ -1,0 +1,96 @@
+.container {
+  padding: 2rem;
+  color: #ffffff;
+  background: #2c3440;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.tableWrapper {
+  background: #1f2937;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #374151;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* ✅ FIX: gunakan selector HTML langsung */
+.table thead {
+  background: #111827;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 500;
+}
+
+.table td {
+  padding: 14px 16px;
+  vertical-align: middle;
+}
+
+/* ROW */
+.row {
+  border-top: 1px solid #374151;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.row:hover {
+  background: rgba(55, 65, 81, 0.7);
+}
+
+/* IMAGE */
+.image {
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* COLUMN FIX */
+.table td:first-child {
+  width: 70px;
+}
+
+.deadline {
+  color: #d1d5db;
+}
+
+.amount {
+  font-weight: 600;
+  text-align: right;
+}
+
+/* STATUS */
+
+.statusProgress {
+  color: #facc15;
+  font-weight: 500;
+}
+
+.statusReview {
+  color: #60a5fa;
+  font-weight: 500;
+}
+
+.statusDispute {
+  color: #f87171;
+  font-weight: 500;
+}
+
+.statusCompleted {
+  color: #4ade80;
+  font-weight: 500;
+}

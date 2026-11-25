@@ -1,0 +1,318 @@
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: #272727;
+    padding: 12px 24px;
+    gap: 20px;
+    height: 64px;
+    position: relative;
+}
+
+.wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.leftside {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    gap: 32px;
+}
+
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.navLink {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.navLink:hover {
+    color: #ffffff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logoText {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: white;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);*/
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    position: relative;
+    cursor: pointer;
+}
+
+.logoText::before {
+    content: 'PIXELHUB';
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    color: #ff00ff;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.logoText::after {
+    content: 'PIXELHUB';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    color: #00ffff;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.center {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.search {
+    width: 100%;
+    max-width: 280px;
+}
+
+.rightside {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.chatIconBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.chatIconBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.chatDropdown {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+    width: 280px;
+    max-height: 400px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 12px 0;
+    color: #333;
+    overflow-y: auto;
+}
+
+.chatDropdown h3 {
+    padding: 0 16px 8px 16px;
+    font-size: 16px;
+    margin: 0;
+}
+
+.chatDropdown hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin-bottom: 8px;
+}
+
+.noChat {
+    padding: 16px;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}
+
+.chatList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.chatList li {
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.chatList li:hover {
+    background: #f5f5f5;
+}
+
+.chatList img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chatInfo {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chatName {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.chatLastMsg {
+    font-size: 12px;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.walletAddress {
+    color: #fff;
+    font-size: 14px;
+    font-family: monospace;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.connectBtn {
+    background: #272727;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    stroke: white;
+    /*color: white;*/
+    /*border: none;*/
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.connectBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 105, 84, 0.4);
+}
+
+.connectBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    transition: transform 0.2s ease;
+}
+
+.profile img:hover {
+    transform: scale(1.1);
+}
+
+.Menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 8px 0;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.Menu li {
+    width: 100%;
+}
+
+/* ── Tablet ── */
+@media (max-width: 1024px) {
+    .navLinks {
+        gap: 16px;
+    }
+
+    .search {
+        max-width: 220px;
+    }
+
+    .walletAddress {
+        display: none;
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 640px) {
+    .wrapper {
+        padding: 10px 16px;
+        gap: 10px;
+    }
+
+    .navLinks {
+        display: none;
+    }
+
+    .logoText {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    .search {
+        max-width: 160px;
+    }
+
+    .connectBtn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .profile img {
+        width: 32px;
+        height: 32px;
+    }
+}

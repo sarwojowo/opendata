@@ -1,0 +1,135 @@
+.container {
+  padding: 2.5rem;
+  background: #2c3440;
+  border-radius: 16px;
+  color: white;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+}
+
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  background: rgba(234,179,8,0.1);
+  color: #eab308;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+/* PARTIES */
+.parties {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.party {
+  flex: 1;
+  background: rgba(255,255,255,0.03);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.wallet {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #a78bfa;
+  word-break: break-all;
+}
+
+/* PREVIEW */
+.preview {
+  margin-top: 10px;
+}
+
+.image {
+  border-radius: 10px;
+}
+
+.preview video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* LINK */
+.link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #7c3aed;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* DECISION BOX */
+.decisionBox {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.release {
+  background: #22c55e;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.release:hover {
+  background: #16a34a;
+}
+
+.refund {
+  background: #ef4444;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.refund:hover {
+  background: #dc2626;
+}
+
+/* ADDRESS */
+.address {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  word-break: break-all;
+}

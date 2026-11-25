@@ -1,0 +1,161 @@
+.popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  height: 450px;
+  background: #222831;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  z-index: 10000;
+  border: 1px solid #393e46;
+}
+
+.header {
+  padding: 12px;
+  background: #393e46;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #eeeeee;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.userInfo img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userInfo span {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: #eeeeee;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.body {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #222831;
+}
+
+.messageWrapper {
+  display: flex;
+  width: 100%;
+}
+
+.mine {
+  justify-content: flex-end;
+}
+
+.theirs {
+  justify-content: flex-start;
+}
+
+.messageGroup {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+}
+
+.mine .messageGroup {
+  align-items: flex-end;
+}
+
+.theirs .messageGroup {
+  align-items: flex-start;
+}
+
+.senderName {
+  font-size: 11px;
+  color: #aaa;
+  margin-bottom: 2px;
+  padding: 0 4px;
+}
+
+.messageBubble {
+  max-width: 100%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.mine .messageBubble {
+  background: #00adb5;
+  color: white;
+  border-bottom-right-radius: 2px;
+}
+
+.theirs .messageBubble {
+  background: #393e46;
+  color: #eeeeee;
+  border-bottom-left-radius: 2px;
+}
+
+.footer {
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+  background: #393e46;
+}
+
+.footer input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: none;
+  background: #222831;
+  color: #eeeeee;
+  outline: none;
+  font-size: 13px;
+}
+
+.footer button {
+  background: transparent;
+  border: none;
+  color: #00adb5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.footer button:disabled {
+  color: #555;
+  cursor: not-allowed;
+}
+
+.body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.body::-webkit-scrollbar-thumb {
+  background: #393e46;
+  border-radius: 10px;
+}

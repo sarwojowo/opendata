@@ -1,0 +1,111 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    background: #2f2f2f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    color: white;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.main_title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+    padding-left: 0.25rem;
+}
+
+.box {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 1.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 1rem;
+    align-items: start;
+}
+
+.card_image {
+    width: 100%;
+    height: 240px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+}
+
+.det_service {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.det_desc {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.det_price {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #3BF686;
+    margin-top: 0.5rem;
+}
+
+.det_button {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.det_button button {
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.button_buy {
+    background: #f0b90b;
+    color: #000;
+    flex: 1.5;
+}
+
+.button_buy:hover {
+    background: #d4a017;
+}
+
+.button_chat {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    flex: 1;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.button_chat:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .box {
+        grid-template-columns: 1fr;
+    }
+    .card_image {
+        height: 200px;
+    }
+}

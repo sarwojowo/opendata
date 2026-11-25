@@ -1,0 +1,122 @@
+.container {
+    padding: 2rem;
+    color: #ffffff;
+    background: #2c3440;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 2rem;
+}
+
+.tableContainer {
+    overflow-x: auto;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table thead {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.table th {
+    padding: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table td {
+    padding: 1rem;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    vertical-align: middle;
+}
+
+.table tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.service_image {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #393e46;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service_image img {
+    object-fit: cover;
+}
+
+.price {
+    font-weight: 700;
+    color: #a78bfa;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.buttonView {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background: #7c3aed;
+    color: white;
+    border: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.buttonView:hover {
+    background: #6d28d9;
+}
+
+.buttonDelete {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.buttonDelete:hover {
+    background: #ef4444;
+    color: white;
+}
+
+.button_add {
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
